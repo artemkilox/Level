@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Stolzl";
+  src: url("../fonts/stolzl_bold.otf") format("truetype");
+  font-style: normal;
+  font-weight: bold;
+}
+
+//@font-face {
+//  font-family: "Stolzy";
+//  src: url("../fonts/stolzl_book.otf") format("truetype");
+//  font-style: normal;
+//  font-weight: normal;
+//}
+
+@font-face {
+  font-family: "Stolzl";
+  src: url("../fonts/stolzl_light.otf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Stolzl";
+  src: url("../fonts/stolzl_medium.otf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Stolzl";
+  src: url("../fonts/stolzl_regular.otf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Stolzl";
+  src: url("../fonts/stolzl_thin.otf") format("truetype");
+  font-style: normal;
+  font-weight: 50;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Stolzl';
+}
