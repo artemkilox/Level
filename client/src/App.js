@@ -3,6 +3,7 @@ import AppRouter from "./components/AppRouter";
 import {observer} from "mobx-react-lite";
 import './styles/mainPage.css'
 import './styles/main.css'
+import './styles/gallery.css'
 
 
 const App = observer(() => {

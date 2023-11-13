@@ -1,0 +1,38 @@
+.gallery-wrapper {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.gallery-wrapper .gallery .gallery-inner {
+  position: fixed;
+  display: flex;
+  overflow: hidden;
+  left: 0;
+}
+.gallery-wrapper .gallery .gallery-inner .gallery-item {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.gallery-wrapper .gallery .gallery-inner .gallery-item .gallery-image {
+  pointer-events: none;
+  user-select: none;
+  height: 100%;
+  width: 100vw;
+}
+.gallery-wrapper .gallery-footer {
+  padding: 3em;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+.gallery-wrapper .gallery-footer .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+/*# sourceMappingURL=gallery.css.map */
