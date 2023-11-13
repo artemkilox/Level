@@ -19,20 +19,21 @@
       .carousel-items{
         margin-top: 13%;
         height: 55vh;
-        transition: .2s;
+        transition: .3s;
         top: 0;
         //left: 500px;
         position: fixed;
         z-index: 999;
         display: flex;
         align-items: center;
-        pointer-events: none;
+        //pointer-events: none;
 
         .current{
           opacity: 1;
         }
 
         .carousel-item{
+          cursor: pointer;
           color: white;
           height: 55vh;
           width: 500px;
@@ -63,6 +64,10 @@
             }
           }
         }
+
+        .current{
+          opacity: 1;
+        }
       }
       .carousel-images{
         height: 55vh;
@@ -71,7 +76,7 @@
         user-select: none;
         //display: flex;
         margin-left: 400px;
-        opacity: 0.3;
+        opacity: 0.4;
 
         .carousel-image-wrapper{
           position: fixed;

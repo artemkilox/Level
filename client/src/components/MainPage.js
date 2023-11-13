@@ -8,15 +8,24 @@ import menuImage5 from '../img/menu5.jpg'
 import star from '../img/star.png'
 import {Image} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
+import {useNavigate} from 'react-router-dom'
+import {
+    APARTMENTS_ROUTE,
+    GALLERY_ROUTE,
+    PARKING_ROUTE,
+    STORAGE_FACILITIES_ROUTE,
+    STORE_ROOMS_ROUTE
+} from "../utils/consts";
 
 const MainPage = observer(() => {
-
+    const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)
     const [pressedPoint, setPressedPoint] = useState(0)
     const [diffX, setDiffX] = useState(0)
     const [cursorX, setCursorX] = useState(0)
     const [currentPosition, setCurrentPosition] = useState(0)
     const [lastImage, setLastImage] = useState(900)
+
     const menuImages = [
         menuImage1,
         menuImage2,
@@ -42,6 +51,15 @@ const MainPage = observer(() => {
         document.getElementById('carouselImage' + cur).classList.add('current')
     }
 
+    const selectItem = (cur) => {
+        document.getElementById('carouselItem0').classList.remove('current')
+        document.getElementById('carouselItem1').classList.remove('current')
+        document.getElementById('carouselItem2').classList.remove('current')
+        document.getElementById('carouselItem3').classList.remove('current')
+        document.getElementById('carouselItem4').classList.remove('current')
+        document.getElementById('carouselItem' + cur).classList.add('current')
+    }
+
     return (
         <div
             className="main-page-wrapper"
@@ -56,16 +74,18 @@ const MainPage = observer(() => {
             }}
             onMouseUp={() => {
                 if(diffX > 100 && currentPosition < 4){
+                    setCursorX(positions[currentPosition+1])
                     selectImage(currentPosition+1)
+                    selectItem(currentPosition+1)
                     setCurrentPosition(currentPosition+1)
                 } else if(diffX < 100 && currentPosition > 0){
+                    setCursorX(positions[currentPosition-1])
                     selectImage(currentPosition-1)
+                    selectItem(currentPosition-1)
                     setCurrentPosition(currentPosition-1)
                 }
                 setDiffX(0)
                 setIsPressed(false)
-                const cards = document.getElementById('cards')
-                setCursorX(cards.getBoundingClientRect().left)
             }}
         >
             <div className="carousel-wrapper">
@@ -75,49 +95,79 @@ const MainPage = observer(() => {
                     <div
                         className="carousel-items"
                         id="cards"
-                        style={{left: `${positions[currentPosition]}px`}}
+                        style={{left: `${isPressed ? cursorX - diffX : positions[currentPosition]}px`}}
                     >
-                        <div className="carousel-item">
+                        <div
+                            className="carousel-item current"
+                            id="carouselItem0"
+                        >
                             <div className="icon">
                                 <Image className="icon-image" src={star}/>
                             </div>
-                            <div className="text-wrapper">
+                            <div
+                                className="text-wrapper"
+                                onClick={() => navigate(APARTMENTS_ROUTE)}
+                            >
                                 <div className="number">01</div>
                                 <div className="title">Квартиры</div>
                             </div>
                         </div>
-                        <div className="carousel-item">
+                        <div
+                            className="carousel-item"
+                            id="carouselItem1"
+                        >
                             <div className="icon">
                                 <Image className="icon-image" src={star}/>
                             </div>
-                            <div className="text-wrapper">
+                            <div
+                                className="text-wrapper"
+                                onClick={() => navigate(PARKING_ROUTE)}
+                            >
                                 <div className="number">02</div>
                                 <div className="title">Паркинг</div>
                             </div>
                         </div>
-                        <div className="carousel-item">
+                        <div
+                            className="carousel-item"
+                            id="carouselItem2"
+                        >
                             <div className="icon">
                                 <Image className="icon-image" src={star}/>
                             </div>
-                            <div className="text-wrapper">
+                            <div
+                                className="text-wrapper"
+                                onClick={() => navigate(STORE_ROOMS_ROUTE)}
+                            >
                                 <div className="number">03</div>
                                 <div className="title">Кладовые</div>
                             </div>
                         </div>
-                        <div className="carousel-item">
+                        <div
+                            className="carousel-item"
+                            id="carouselItem3"
+                        >
                             <div className="icon">
                                 <Image className="icon-image" src={star}/>
                             </div>
-                            <div className="text-wrapper">
+                            <div
+                                className="text-wrapper"
+                                onClick={() => navigate(STORAGE_FACILITIES_ROUTE)}
+                            >
                                 <div className="number">04</div>
                                 <div className="title">Складские <br/> помещения</div>
                             </div>
                         </div>
-                        <div className="carousel-item">
+                        <div
+                            className="carousel-item"
+                            id="carouselItem4"
+                        >
                             <div className="icon">
                                 <Image className="icon-image" src={star}/>
                             </div>
-                            <div className="text-wrapper">
+                            <div
+                                className="text-wrapper"
+                                onClick={() => navigate(GALLERY_ROUTE)}
+                            >
                                 <div className="number">05</div>
                                 <div className="title">Галерея</div>
                             </div>

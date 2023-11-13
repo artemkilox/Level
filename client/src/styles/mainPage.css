@@ -14,18 +14,18 @@
 .main-page-wrapper .carousel-wrapper .carousel .carousel-items {
   margin-top: 13%;
   height: 55vh;
-  transition: 0.2s;
+  transition: 0.3s;
   top: 0;
   position: fixed;
   z-index: 999;
   display: flex;
   align-items: center;
-  pointer-events: none;
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-items .current {
   opacity: 1;
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-items .carousel-item {
+  cursor: pointer;
   color: white;
   height: 55vh;
   width: 500px;
@@ -49,13 +49,16 @@
   font-weight: bold;
   font-size: 1.5em;
 }
+.main-page-wrapper .carousel-wrapper .carousel .carousel-items .current {
+  opacity: 1;
+}
 .main-page-wrapper .carousel-wrapper .carousel .carousel-images {
   height: 55vh;
   position: fixed;
   pointer-events: none;
   user-select: none;
   margin-left: 400px;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-images .carousel-image-wrapper {
   position: fixed;
