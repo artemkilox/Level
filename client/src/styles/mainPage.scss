@@ -80,10 +80,13 @@
 
         .carousel-image-wrapper{
           position: fixed;
+          overflow: hidden;
+          width: 350px;
+          display: flex;
+          justify-content: center;
 
           .carousel-image{
             height: 55vh;
-            width: 500px;
             opacity: 0;
             transition: .5s;
           }

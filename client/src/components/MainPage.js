@@ -24,7 +24,8 @@ const MainPage = observer(() => {
     const [diffX, setDiffX] = useState(0)
     const [cursorX, setCursorX] = useState(0)
     const [currentPosition, setCurrentPosition] = useState(0)
-    const [lastImage, setLastImage] = useState(900)
+
+    // console.log(localStorage.getItem("last"))
 
     const menuImages = [
         menuImage1,
@@ -58,6 +59,16 @@ const MainPage = observer(() => {
         document.getElementById('carouselItem3').classList.remove('current')
         document.getElementById('carouselItem4').classList.remove('current')
         document.getElementById('carouselItem' + cur).classList.add('current')
+    }
+
+    if(localStorage.getItem("last") !== null){
+        const number = Number(localStorage.getItem("last"))
+        setTimeout(() => {
+            setCurrentPosition(number)
+            selectImage(number)
+            selectItem(number)
+            localStorage.removeItem("last")
+        }, 200)
     }
 
     return (
@@ -106,7 +117,10 @@ const MainPage = observer(() => {
                             </div>
                             <div
                                 className="text-wrapper"
-                                onClick={() => navigate(APARTMENTS_ROUTE)}
+                                onClick={() => {
+                                    localStorage.setItem("last", "0")
+                                    navigate(APARTMENTS_ROUTE)
+                                }}
                             >
                                 <div className="number">01</div>
                                 <div className="title">Квартиры</div>
@@ -121,7 +135,10 @@ const MainPage = observer(() => {
                             </div>
                             <div
                                 className="text-wrapper"
-                                onClick={() => navigate(PARKING_ROUTE)}
+                                onClick={() => {
+                                    localStorage.setItem("last", "1")
+                                    navigate(PARKING_ROUTE)
+                                }}
                             >
                                 <div className="number">02</div>
                                 <div className="title">Паркинг</div>
@@ -136,7 +153,10 @@ const MainPage = observer(() => {
                             </div>
                             <div
                                 className="text-wrapper"
-                                onClick={() => navigate(STORE_ROOMS_ROUTE)}
+                                onClick={() => {
+                                    localStorage.setItem("last", "2")
+                                    navigate(STORE_ROOMS_ROUTE)
+                                }}
                             >
                                 <div className="number">03</div>
                                 <div className="title">Кладовые</div>
@@ -151,7 +171,10 @@ const MainPage = observer(() => {
                             </div>
                             <div
                                 className="text-wrapper"
-                                onClick={() => navigate(STORAGE_FACILITIES_ROUTE)}
+                                onClick={() => {
+                                    localStorage.setItem("last", "3")
+                                    navigate(STORAGE_FACILITIES_ROUTE)
+                                }}
                             >
                                 <div className="number">04</div>
                                 <div className="title">Складские <br/> помещения</div>
@@ -166,7 +189,10 @@ const MainPage = observer(() => {
                             </div>
                             <div
                                 className="text-wrapper"
-                                onClick={() => navigate(GALLERY_ROUTE)}
+                                onClick={() => {
+                                    localStorage.setItem("last", "4")
+                                    navigate(GALLERY_ROUTE)
+                                }}
                             >
                                 <div className="number">05</div>
                                 <div className="title">Галерея</div>

@@ -21,7 +21,7 @@
   width: 100vw;
 }
 .gallery-wrapper .gallery-footer {
-  padding: 3em;
+  padding: 1em;
   color: white;
   position: fixed;
   bottom: 0;
@@ -32,7 +32,97 @@
 .gallery-wrapper .gallery-footer .buttons {
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  align-items: center;
+  width: 250px;
+}
+.gallery-wrapper .gallery-footer .buttons .numbers {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+.gallery-wrapper .gallery-footer .buttons .prev {
+  cursor: pointer;
+  position: relative;
+  width: 80px;
+  height: 50px;
+  margin: 20px 20px;
+}
+.gallery-wrapper .gallery-footer .buttons .prev div {
+  position: relative;
+  top: 20px;
+  width: 45px;
+  height: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  left: 0;
+  display: block;
+}
+.gallery-wrapper .gallery-footer .buttons .prev div:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 6px;
+  top: 5px;
+  right: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: rotate(45deg);
+}
+.gallery-wrapper .gallery-footer .buttons .prev div:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 6px;
+  top: -5px;
+  right: 30px;
+  background-color: #ffffff;
+  transform: rotate(-45deg);
+}
+.gallery-wrapper .gallery-footer .buttons .prev div:after, .gallery-wrapper .gallery-footer .buttons .prev div :before {
+  box-sizing: border-box;
+}
+.gallery-wrapper .gallery-footer .buttons .next {
+  cursor: pointer;
+  position: relative;
+  width: 80px;
+  height: 50px;
+  margin: 20px 20px;
+}
+.gallery-wrapper .gallery-footer .buttons .next div {
+  position: relative;
+  top: 20px;
+  width: 45px;
+  height: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  left: 0;
+  display: block;
+}
+.gallery-wrapper .gallery-footer .buttons .next div:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 6px;
+  top: 5px;
+  right: -8px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: rotate(-45deg);
+}
+.gallery-wrapper .gallery-footer .buttons .next div:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 6px;
+  top: -5px;
+  right: -8px;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+}
+.gallery-wrapper .gallery-footer .buttons .next div:after, .gallery-wrapper .gallery-footer .buttons .next div :before {
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=gallery.css.map */

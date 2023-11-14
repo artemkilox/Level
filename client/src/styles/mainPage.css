@@ -62,10 +62,13 @@
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-images .carousel-image-wrapper {
   position: fixed;
+  overflow: hidden;
+  width: 350px;
+  display: flex;
+  justify-content: center;
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-images .carousel-image-wrapper .carousel-image {
   height: 55vh;
-  width: 500px;
   opacity: 0;
   transition: 0.5s;
 }
