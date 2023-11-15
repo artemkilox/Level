@@ -1,0 +1,73 @@
+.apartments-wrapper {
+  background: #f1f1f1;
+}
+.apartments-wrapper .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.apartments-wrapper .content-wrapper .top-menu {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0;
+}
+.apartments-wrapper .content-wrapper .apartments {
+  display: flex;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item {
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .left-side {
+  padding: 1em;
+  border-right: 2px solid #c9c9c9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .left-side .image {
+  width: 200px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .title {
+  padding: 15px 15px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters {
+  padding-left: 15px;
+  border-bottom: 2px solid #c9c9c9;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: 15px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters .character-item {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters .character-item .character-title {
+  opacity: 0.5;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper {
+  display: flex;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price {
+  padding: 15px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .timer {
+  padding-bottom: 5px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .price-value {
+  font-size: 1.8em;
+  padding-bottom: 5px;
+}
+.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow {
+  padding: 0 15px;
+  border-left: 2px solid #c9c9c9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=apartments.css.map */

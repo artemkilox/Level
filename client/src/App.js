@@ -4,6 +4,7 @@ import {observer} from "mobx-react-lite";
 import './styles/mainPage.css'
 import './styles/main.css'
 import './styles/gallery.css'
+import './styles/apartments.css'
 
 
 const App = observer(() => {
