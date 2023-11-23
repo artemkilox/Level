@@ -1,73 +1,176 @@
-.apartments-wrapper {
-  background: #f1f1f1;
+@font-face {
+  font-family: "Montserrat SemiBold";
+  src: url("../fonts/Montserrat-SemiBold.ttf") format("truetype");
+  font-style: auto;
+  font-weight: 500;
 }
-.apartments-wrapper .content-wrapper {
+@font-face {
+  font-family: "Montserrat ExtraBold";
+  src: url("../fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  font-style: auto;
+  font-weight: 500;
+}
+.apartments-wrapper {
+  background: #f4f6f8;
+  display: flex;
+  justify-content: space-between;
+}
+.apartments-wrapper .content-outer {
+  width: 100%;
+}
+.apartments-wrapper .content-outer .content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.apartments-wrapper .content-wrapper .top-menu {
+.apartments-wrapper .content-outer .content-wrapper .top-menu {
   max-width: 1000px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   padding: 50px 0;
 }
-.apartments-wrapper .content-wrapper .apartments {
-  display: flex;
+.apartments-wrapper .content-outer .content-wrapper .apartments {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item {
   background: white;
   border-radius: 15px;
   display: flex;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2em;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .left-side {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item:nth-child(odd) {
+  margin-right: 2em;
+  flex: 1;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .left-side {
   padding: 1em;
-  border-right: 2px solid #c9c9c9;
+  border-right: 3px solid #f4f6f8;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .left-side .image {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .left-side .image-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .left-side .image-wrapper .image {
+  padding: 0.5em;
   width: 200px;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .title {
-  padding: 15px 15px;
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .title {
+  padding: 15px 15px 1.5em;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters {
   padding-left: 15px;
-  border-bottom: 2px solid #c9c9c9;
+  border-bottom: 3px solid #f4f6f8;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding-bottom: 15px;
+  padding-bottom: 1.5em;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters .character-item {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item {
   padding-right: 10px;
   padding-bottom: 10px;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .characters .character-item .character-title {
-  opacity: 0.5;
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item .character-title {
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5em;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item .character-value {
+  font-family: "Montserrat SemiBold";
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper {
   display: flex;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price {
   padding: 15px;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .timer {
-  padding-bottom: 5px;
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .timer {
+  padding-bottom: 0.5em;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .price-value {
-  font-size: 1.8em;
-  padding-bottom: 5px;
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .timer span {
+  color: #c84252;
 }
-.apartments-wrapper .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow {
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .price-value {
+  font-family: "Montserrat ExtraBold";
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .sale span {
+  font-family: "Montserrat SemiBold";
+  color: #c84252;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow {
   padding: 0 15px;
-  border-left: 2px solid #c9c9c9;
+  border-left: 3px solid #f4f6f8;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow .follow-item {
+  width: 50px;
+}
+.apartments-wrapper .content-outer .content-wrapper .logo {
+  left: 2em;
+  bottom: 4em;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  width: 80px;
+  align-items: flex-end;
+}
+.apartments-wrapper .content-outer .content-wrapper .logo span {
+  margin-left: 0.6em;
+  font-size: 1.4em;
+}
+.apartments-wrapper .content-outer .content-wrapper .back-btn {
+  right: 2em;
+  bottom: 4em;
+  position: fixed;
+  z-index: 999;
+  display: block;
+  border-radius: 3px;
+  width: 40px;
+  height: 4px;
+  background: black;
+}
+.apartments-wrapper .content-outer .content-wrapper .back-btn::before {
+  display: block;
+  content: "";
+  margin-top: -15px;
+  border-radius: 3px;
+  width: 40px;
+  height: 4px;
+  background: black;
+}
+.apartments-wrapper .content-outer .content-wrapper .back-btn::after {
+  display: block;
+  content: "";
+  margin-top: 26px;
+  border-radius: 3px;
+  width: 25px;
+  height: 4px;
+  background: black;
+}
+.apartments-wrapper .sidebar-wrapper {
+  position: fixed;
+  right: 0;
+  text-align: center;
+  height: 100vh;
+  width: 40px;
+  font-size: 1.5em;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.apartments-wrapper .sidebar-wrapper .side-icon {
+  width: 40px;
+  transform: rotate(180deg);
 }
 
 /*# sourceMappingURL=apartments.css.map */

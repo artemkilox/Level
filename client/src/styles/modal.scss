@@ -1,0 +1,207 @@
+@font-face {
+  font-family: "Montserrat SemiBold";
+  src: url("../fonts/Montserrat-SemiBold.ttf") format("truetype");
+  font-style: auto;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Montserrat ExtraBold";
+  src: url("../fonts/Montserrat-ExtraBold.ttf") format("truetype");
+  font-style: auto;
+  font-weight: 500;
+}
+
+.modal-outer{
+  position: fixed;
+  display: block;
+  background: white;
+  height: 100vh;
+  width: 100%;
+  z-index: 998;
+
+  .close-button{
+    top: 4em;
+    left: 2em;
+    position: fixed;
+    height: 50px;
+    width: 50px;
+
+    &:after {
+      content: '';
+      position: fixed;
+      height: 3px;
+      width: 40px;
+      background: black;
+      transform: rotate(-45deg);
+    }
+    &:before {
+      content: '';
+      position: fixed;
+      height: 3px;
+      width: 40px;
+      background: black;
+      transform: rotate(45deg);
+    }
+  }
+
+  .modal-container{
+    height: 100%;
+    display: flex;
+
+    .left-side{
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 5px 0 5px rgba(0, 0, 0, 0.05);
+
+      .content-wrapper{
+        .article{
+          font-size: .7em;
+          opacity: .3;
+          margin-bottom: 1.5em;
+        }
+        .title{
+          font-size: 1.5em;
+          margin-bottom: 1em;
+        }
+        .characters{
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          padding-bottom: 1.5em;
+
+          .character-item{
+            padding-right: 10px;
+            padding-bottom: 10px;
+
+            .character-title{
+              font-size: .6em;
+              opacity: .3;
+              margin-bottom: .5em;
+            }
+            .character-value{
+              font-size: 1em;
+              font-family: 'Montserrat ExtraBold';
+            }
+          }
+        }
+        .price{
+
+          .timer{
+            padding-bottom: .5em;
+            span{
+              color: #c84252;
+            }
+          }
+          .price-value{
+            font-family: 'Montserrat ExtraBold';
+            font-size: 1.5em;
+            padding-bottom: .5em;
+          }
+          .sale{
+
+            span{
+              font-family: 'Montserrat SemiBold';
+              color: #c84252;
+            }
+          }
+        }
+        .follow{
+          .follow-item{
+            width: 50px;
+          }
+        }
+      }
+    }
+
+    .right-side{
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .top-content{
+        height: 10%;
+        margin-top: 2em;
+        display: flex;
+        justify-content: space-around;
+        .icon{
+          .icon-image{
+            width: 50px;
+          }
+        }
+        .tags-wrapper{
+          width: 80%;
+          display: flex;
+          justify-content: center;
+          .tags{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .tag-item{
+              margin: 5px;
+              border-radius: 5px;
+              display: block;
+              padding: .5em;
+              height: 2em;
+              box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+      }
+      .slider-outer{
+        height: 90%;
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        align-items: center;
+
+        .slider-wrapper{
+          //margin-left: 15em;
+          width: 35em;
+          overflow: hidden;
+
+          .images-wrapper{
+            width: 35em;
+            display: flex;
+            transition: .5s;
+
+            .slider-image{
+              width: 40em;
+              padding: 2em;
+              //margin-right: 25%;
+            }
+          }
+        }
+
+        .buttons-wrapper{
+          display: flex;
+          justify-content: center;
+
+          .button{
+            margin: 0 1em;
+            opacity: .3;
+            font-weight: bold;
+          }
+          .active{
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .gallery-button{
+      bottom: 8em;
+      right: 2em;
+      position: fixed;
+
+      .gallery-button-icon{
+        width: 40px;
+      }
+    }
+  }
+}

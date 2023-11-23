@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {images} from '../data/data'
+import React from 'react';
 import {Image} from "react-bootstrap";
-import {useNavigate} from "react-router";
 import {MAIN_PAGE_ROUTE} from "../utils/consts";
+import {useNavigate} from "react-router";
+import {useState} from "react";
 import levelLogo from '../img/LevelLogo.svg'
 
-const Gallery = () => {
+const GalleryModal = ({show, close, images}) => {
     const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)
     const [pressedPoint, setPressedPoint] = useState(0)
@@ -14,17 +14,25 @@ const Gallery = () => {
     const [curImage, setCurImage] = useState(0)
     const availableScreenWidth = window.screen.availWidth
 
+    console.log(images)
+
     return (
         <div
             className="gallery-wrapper"
+            style={show ? {display: "block"} : {display: "none"}}
         >
+            <div
+                className="back-button-modal"
+                onClick={close}
+            >
+                <div></div>
+                Назад
+            </div>
             <div className="gallery">
                 <div
                     className="gallery-inner"
                     style={{left: `${isPressed ? cursorX - diffX : (- availableScreenWidth * curImage)}px`,
                         transition: `${isPressed ? 0 : .2}s`}}
-                    // style={{left: `${isPressed ? cursorX - diffX : (-100 * curImage)}vw`}}
-                    // style={{left: `${-100 * curImage}vw`}}
                     onMouseDown={(e) => {
                         setIsPressed(true)
                         setPressedPoint(e.pageX)
@@ -49,9 +57,9 @@ const Gallery = () => {
                     {images.map(image =>
                         <div
                             className="gallery-item"
-                            key={image.id}
+                            key={image}
                         >
-                            <Image className="gallery-image" src={image.img}/>
+                            <Image className="gallery-image" src={image}/>
                         </div>
                     )}
                 </div>
@@ -83,8 +91,7 @@ const Gallery = () => {
                 >
                 </div>
             </div>
-        </div>
-    );
+        </div>)
 };
 
-export default Gallery;
+export default GalleryModal;

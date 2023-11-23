@@ -5,6 +5,7 @@ import './styles/mainPage.css'
 import './styles/main.css'
 import './styles/gallery.css'
 import './styles/apartments.css'
+import './styles/modal.css'
 
 
 const App = observer(() => {

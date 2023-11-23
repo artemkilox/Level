@@ -1,123 +1,145 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {apartments} from '../data/data'
+import {Image} from "react-bootstrap";
+import heartImage from '../img/heart.svg'
+import levelLogoBlack from '../img/LevelLogoBlack.svg'
+import {useNavigate} from "react-router";
+import {MAIN_PAGE_ROUTE} from "../utils/consts";
+import star from '../img/starBlack.png'
+import Modal from "./Modal";
+import GalleryModal from "./GalleryModal";
 
 const Apartments = () => {
+    const navigate = useNavigate()
+    const [showModal, setShowModal] = useState(false)
+    const [selectedRoom, setSelectedRoom] = useState('')
+    const [showGallery, setShowGallery] = useState(false)
+    const [galleryImages, setGalleryImages] = useState([])
+    const [showOverlay, setShowOverlay] = useState(true)
 
+    const onHide = () => {
+        setShowModal(false)
+        setSelectedRoom('')
+    }
 
+    const openGallery = () => {
+        setShowModal(false)
+        setShowGallery(true)
+        setShowOverlay(false)
+    }
+
+    const closeGallery = () => {
+        setShowModal(true)
+        setShowGallery(false)
+        setShowOverlay(true)
+    }
 
     return (
         <div
             className="apartments-wrapper"
         >
-            <div className="content-wrapper">
-                <div
-                    className="top-menu"
-                >
-                    <div className="menu-item">
-                        Этаж
-                    </div>
-                    <div className="menu-item">
-                        Площадь
-                    </div>
-                    <div className="menu-item">
-                        Стоимость
-                    </div>
-                </div>
-                <div className="apartments">
-                    <div className="apartments-item">
-                        <div className="left-side">
-                            <div className="article">
-                                article
-                            </div>
-                            <div className="image">
-                                image
-                            </div>
+            <Modal
+                show={showModal}
+                onHide={onHide}
+                room={selectedRoom}
+                openGallery={openGallery}
+                setGalleryImages={setGalleryImages}
+            />
+            <GalleryModal
+                show={showGallery}
+                close={closeGallery}
+                images={galleryImages}
+            />
+            <div className="content-outer">
+                <div className="content-wrapper">
+                    <div
+                        className="top-menu"
+                    >
+                        <div className="menu-item">
+                            Этаж
                         </div>
-                        <div className="right-side">
-                            <div className="title">
-                                title
-                            </div>
-                            <div className="characters">
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                                <div className="character-item">
-                                    <div className="character-title">
-                                        Площадь
-                                    </div>
-                                    <div className="character-value">
-                                        30 м2
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bottom-wrapper">
-                                <div className="price">
-                                    <div className="timer">
-                                        Цена по акции <span>до 31.07</span>
-                                    </div>
-                                    <div className="price-value">
-                                        11 089 099 р
-                                    </div>
-                                    <div className="sale">
-                                        Со скидкой 11 352 789 р
-                                    </div>
-                                </div>
-                                <div className="follow">
-                                    <div className="follow-item">
-                                        Сердечко
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="menu-item">
+                            Площадь
+                        </div>
+                        <div className="menu-item">
+                            Стоимость
                         </div>
                     </div>
-                </div>
-                <div className="bottom-menu">
-                    <div className="logo">
-                        ЛОГО
+                    <div className="apartments">
+                        {apartments.map(apartment =>
+                            <div className="apartments-item" key={apartment.id}>
+                                <div className="left-side">
+                                    <div className="article">
+                                        {apartment.article}
+                                    </div>
+                                    <div className="image-wrapper">
+                                        <Image
+                                            className="image"
+                                            src={apartment.img[0]}
+                                            onClick={() => {
+                                                setSelectedRoom(apartment)
+                                                setShowModal(true)
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="right-side">
+                                    <div className="title">
+                                        {apartment.title}
+                                    </div>
+                                    <div className="characters">
+                                        {apartment.characters.map(character =>
+                                            <div className="character-item" key={character.title}>
+                                                <div className="character-title">
+                                                    {character.title}
+                                                </div>
+                                                <div className="character-value">
+                                                    {character.value}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="bottom-wrapper">
+                                        <div className="price">
+                                            <div className="timer">
+                                                Цена по акции <span>{apartment.saleDate}</span>
+                                            </div>
+                                            <div className="price-value">
+                                                {apartment.price}
+                                            </div>
+                                            <div className="sale">
+                                                Со скидкой <span>{apartment.salePrice}</span>
+                                            </div>
+                                        </div>
+                                        <div className="follow">
+                                            <div className="follow-item">
+                                                <Image src={heartImage}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <div className="back-btn">
-                        Назад
+                    <div
+                        className="logo"
+                        style={showOverlay ? {display: "flex"} : {display: "none"}}
+                    >
+                        <Image src={levelLogoBlack}/><span>Академическая</span>
+                    </div>
+                    <div
+                        className="back-btn"
+                        onClick={() => navigate(MAIN_PAGE_ROUTE)}
+                        style={showOverlay ? {display: "block"} : {display: "none"}}
+                    >
                     </div>
                 </div>
             </div>
-            <div className="sidebar-wrapper">
-                Фильтрация
+            <div
+                className="sidebar-wrapper"
+                style={showOverlay ? {display: "block"} : {display: "none"}}
+            >
+                <Image className="side-icon" src={star}/> Фильтрация
             </div>
         </div>
     );
