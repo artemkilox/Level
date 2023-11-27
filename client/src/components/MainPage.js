@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // import backImage from '../img/back-image.png'
 import menuImage1 from '../img/menu1.jpeg'
 import menuImage2 from '../img/menu2.jpg'
@@ -16,8 +16,32 @@ import {
     STORAGE_FACILITIES_ROUTE,
     STORE_ROOMS_ROUTE
 } from "../utils/consts";
+import {fetchApartments} from "../http/levelAPI";
+import axios from "axios";
 
 const MainPage = observer(() => {
+    const [apartments, setApartments] = useState([])
+
+    useEffect( async () => {
+        const response = await axios.get(
+            'https://level.ru/api/contractor/flat/?project=nizheg',
+            {
+                auth: {
+                    username: 'photonlab.public@gmail.com',
+                    password: '?TORQ3*5am',
+                },
+                headers: {
+                    'Accept': '*/*',
+                    'content-type': 'application/json',
+                    'Authorization': 'Client-ID [my-client-id]',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Headers',
+                    'Access-Control-Allow-Methods': 'POST',
+                }
+            },
+        )
+        console.log(response)
+    })
+
     const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)
     const [pressedPoint, setPressedPoint] = useState(0)
