@@ -16,31 +16,15 @@ import {
     STORAGE_FACILITIES_ROUTE,
     STORE_ROOMS_ROUTE
 } from "../utils/consts";
-import {fetchApartments} from "../http/levelAPI";
 import axios from "axios";
+import {$host} from "../http/index";
 
 const MainPage = observer(() => {
     const [apartments, setApartments] = useState([])
 
-    useEffect( async () => {
-        const response = await axios.get(
-            'https://level.ru/api/contractor/flat/?project=nizheg',
-            {
-                auth: {
-                    username: 'photonlab.public@gmail.com',
-                    password: '?TORQ3*5am',
-                },
-                headers: {
-                    'Accept': '*/*',
-                    'content-type': 'application/json',
-                    'Authorization': 'Client-ID [my-client-id]',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Access-Control-Allow-Headers',
-                    'Access-Control-Allow-Methods': 'POST',
-                }
-            },
-        )
-        console.log(response)
-    })
+    useEffect(() => {
+        $host.get('/').then(result => console.log(result))
+    }, [])
 
     const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)

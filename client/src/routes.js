@@ -13,7 +13,6 @@ import StoreRooms from "./components/StoreRooms";
 import StorageFacilities from "./components/StorageFacilities";
 import Gallery from "./components/Gallery";
 
-
 export const publicRoutes = [
     {
         path: MAIN_PAGE_ROUTE,

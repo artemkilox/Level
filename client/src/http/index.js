@@ -1,16 +1,6 @@
 import axios from "axios";
 
 export const $host = axios.create({
-    baseURL: 'https://level.ru/api/contractor/flat/',
-    auth: {
-        username: 'photonlab.public@gmail.com',
-        password: '?TORQ3*5am'
-    }
+    // baseURL: process.env.REACT_APP_API_CORRECT_URL
+    baseURL: 'http://localhost:5000/'
 })
-
-// await axios.post(session_url, {}, {
-//     auth: {
-//         username: uname,
-//         password: pass
-//     }
-// });
