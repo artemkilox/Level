@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {apartments} from '../data/data'
+import React, {useEffect, useState} from 'react';
+// import {apartments} from '../data/data'
 import {Image} from "react-bootstrap";
 import heartImage from '../img/heart.svg'
 import levelLogoBlack from '../img/LevelLogoBlack.svg'
@@ -8,6 +8,7 @@ import {MAIN_PAGE_ROUTE} from "../utils/consts";
 import star from '../img/starBlack.png'
 import Modal from "./Modal";
 import GalleryModal from "./GalleryModal";
+import {$host} from "../http";
 
 const Apartments = () => {
     const navigate = useNavigate()
@@ -16,6 +17,13 @@ const Apartments = () => {
     const [showGallery, setShowGallery] = useState(false)
     const [galleryImages, setGalleryImages] = useState([])
     const [showOverlay, setShowOverlay] = useState(true)
+    const [apartments, setApartments] = useState([])
+
+    useEffect(() => {
+        $host.get('/').then(result => setApartments(result.data.results))
+    }, [])
+
+    console.log(apartments)
 
     const onHide = () => {
         setShowModal(false)
@@ -66,16 +74,16 @@ const Apartments = () => {
                         </div>
                     </div>
                     <div className="apartments">
-                        {apartments.map(apartment =>
+                        {apartments !== [] ? apartments.map(apartment =>
                             <div className="apartments-item" key={apartment.id}>
                                 <div className="left-side">
                                     <div className="article">
-                                        {apartment.article}
+                                        {apartment.number}
                                     </div>
                                     <div className="image-wrapper">
                                         <Image
                                             className="image"
-                                            src={apartment.img[0]}
+                                            src={apartment.plan}
                                             onClick={() => {
                                                 setSelectedRoom(apartment)
                                                 setShowModal(true)
@@ -85,19 +93,68 @@ const Apartments = () => {
                                 </div>
                                 <div className="right-side">
                                     <div className="title">
-                                        {apartment.title}
+                                       {/*{apartment.title}*/}
+                                       Квартира
                                     </div>
                                     <div className="characters">
-                                        {apartment.characters.map(character =>
-                                            <div className="character-item" key={character.title}>
-                                                <div className="character-title">
-                                                    {character.title}
-                                                </div>
-                                                <div className="character-value">
-                                                    {character.value}
-                                                </div>
+                                        {/*{apartment.characters.map(character =>*/}
+                                        {/*    <div className="character-item" key={character.title}>*/}
+                                        {/*        <div className="character-title">*/}
+                                        {/*            {character.title}*/}
+                                        {/*        </div>*/}
+                                        {/*        <div className="character-value">*/}
+                                        {/*            {character.value}*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*)}*/}
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Площадь
                                             </div>
-                                        )}
+                                            <div className="character-value">
+                                                {apartment.area} м²
+                                            </div>
+                                        </div>
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Комнат
+                                            </div>
+                                            <div className="character-value">
+                                                {apartment.room} к
+                                            </div>
+                                        </div>
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Отделка
+                                            </div>
+                                            <div className="character-value">
+                                                {apartment.renovation}
+                                            </div>
+                                        </div>
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Этаж
+                                            </div>
+                                            <div className="character-value">
+                                                {apartment.floor} из {apartment.floors_total}
+                                            </div>
+                                        </div>
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Корпус
+                                            </div>
+                                            <div className="character-value">
+                                                {apartment.building}
+                                            </div>
+                                        </div>
+                                        <div className="character-item">
+                                            <div className="character-title">
+                                                Окна на
+                                            </div>
+                                            <div className="character-value">
+                                                {apartment.windows_located}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="bottom-wrapper">
                                         <div className="price">
@@ -119,7 +176,7 @@ const Apartments = () => {
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        ) : <div></div>}
                     </div>
                     <div
                         className="logo"

@@ -8,7 +8,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
     const request = require('request');
     const options = {
-        url: 'https://level.ru/api/contractor/flat/?limit=25&offset=25&project=nizheg&price_0=45000000&price_1=121300000',
+        url: 'https://level.ru/api/contractor/flat/?limit=25&offset=25&project=nizheg',
         auth: {
             username: 'photonlab.public@gmail.com',
             password: '?TORQ3*5am',

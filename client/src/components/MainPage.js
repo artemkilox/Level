@@ -22,9 +22,9 @@ import {$host} from "../http/index";
 const MainPage = observer(() => {
     const [apartments, setApartments] = useState([])
 
-    useEffect(() => {
-        $host.get('/').then(result => console.log(result))
-    }, [])
+    // useEffect(() => {
+    //     $host.get('/').then(result => console.log(result))
+    // }, [])
 
     const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)
