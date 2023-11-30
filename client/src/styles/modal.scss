@@ -175,9 +175,14 @@
               width: 40em;
               padding: 2em;
               //margin-right: 25%;
+              .svg-polygon{
+                position: fixed;
+              }
             }
           }
         }
+
+
 
         .buttons-wrapper{
           display: flex;

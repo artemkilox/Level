@@ -68,13 +68,15 @@
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters {
   padding-left: 15px;
   border-bottom: 3px solid #f4f6f8;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
   padding-bottom: 1.5em;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item {
   padding-right: 10px;
   padding-bottom: 10px;
+  margin-right: 1em;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item .character-title {
   font-size: 0.9em;
@@ -86,6 +88,7 @@
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper {
   display: flex;
+  justify-content: center;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price {
   padding: 15px;
@@ -106,9 +109,9 @@
   color: #c84252;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow {
+  display: none;
   padding: 0 15px;
   border-left: 3px solid #f4f6f8;
-  display: flex;
   justify-content: center;
   align-items: center;
 }

@@ -153,6 +153,9 @@
   width: 40em;
   padding: 2em;
 }
+.modal-outer .modal-container .right-side .slider-outer .slider-wrapper .images-wrapper .slider-image .svg-polygon {
+  position: fixed;
+}
 .modal-outer .modal-container .right-side .slider-outer .buttons-wrapper {
   display: flex;
   justify-content: center;

@@ -158,15 +158,15 @@ const Apartments = () => {
                                     </div>
                                     <div className="bottom-wrapper">
                                         <div className="price">
-                                            <div className="timer">
-                                                Цена по акции <span>{apartment.saleDate}</span>
-                                            </div>
+                                            {/*<div className="timer">*/}
+                                            {/*    Цена по акции <span>{apartment.saleDate}</span>*/}
+                                            {/*</div>*/}
                                             <div className="price-value">
-                                                {apartment.price}
+                                                {apartment.price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽
                                             </div>
-                                            <div className="sale">
-                                                Со скидкой <span>{apartment.salePrice}</span>
-                                            </div>
+                                            {/*<div className="sale">*/}
+                                            {/*    Со скидкой <span>{apartment.salePrice}</span>*/}
+                                            {/*</div>*/}
                                         </div>
                                         <div className="follow">
                                             <div className="follow-item">
