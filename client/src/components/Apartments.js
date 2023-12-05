@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 // import {apartments} from '../data/data'
-import {Image} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import heartImage from '../img/heart.svg'
 import levelLogoBlack from '../img/LevelLogoBlack.svg'
 import {useNavigate} from "react-router";
@@ -9,6 +9,8 @@ import star from '../img/starBlack.png'
 import Modal from "./Modal";
 import GalleryModal from "./GalleryModal";
 import {$host} from "../http";
+import {Form} from "react-bootstrap";
+import MultiRangeSlider from "./MultiRangeSlider";
 
 const Apartments = () => {
     const navigate = useNavigate()
@@ -18,9 +20,13 @@ const Apartments = () => {
     const [galleryImages, setGalleryImages] = useState([])
     const [showOverlay, setShowOverlay] = useState(true)
     const [apartments, setApartments] = useState([])
+    const [showSidebar, setShowSidebar] = useState(false)
 
     useEffect(() => {
-        $host.get('/').then(result => setApartments(result.data.results))
+        $host.get('/').then(result => {
+            // console.log(result)
+            setApartments(result.data.results)
+        })
     }, [])
 
     console.log(apartments)
@@ -196,7 +202,38 @@ const Apartments = () => {
                 className="sidebar-wrapper"
                 style={showOverlay ? {display: "block"} : {display: "none"}}
             >
-                <Image className="side-icon" src={star}/> Фильтрация
+                <div
+                    className="sidebar-title"
+                    style={showSidebar ? {display: "none"} : {display: "block"}}
+                    onClick={() => setShowSidebar(true)}
+                >
+                    <Image className="side-icon" src={star}/> Фильтрация
+                </div>
+                <div
+                    className={showSidebar ? "sidebar open-sidebar" : "sidebar"}
+                >
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <div>Сайдбар</div>
+                    <MultiRangeSlider
+                        min={0}
+                        max={100}
+                        onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+                    />
+                    <Button
+                        onClick={() => setShowSidebar(false)}
+                    >
+                        Закрыть
+                    </Button>
+                </div>
             </div>
         </div>
     );

@@ -162,27 +162,32 @@
         align-items: center;
 
         .slider-wrapper{
-          //margin-left: 15em;
           width: 35em;
           overflow: hidden;
 
           .images-wrapper{
             width: 35em;
             display: flex;
-            transition: .5s;
+            transition: .3s;
 
             .slider-image{
+              display: flex;
+              justify-content: center;
+              align-items: center;
               width: 40em;
-              padding: 2em;
-              //margin-right: 25%;
+
+              .plan-wrapper{
+                width: 35em;
+              }
+
               .svg-polygon{
                 position: fixed;
+                width: 35em;
+                opacity: .5;
               }
             }
           }
         }
-
-
 
         .buttons-wrapper{
           display: flex;

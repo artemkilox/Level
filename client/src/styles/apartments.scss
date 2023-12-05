@@ -196,17 +196,36 @@
   .sidebar-wrapper{
     position: fixed;
     right: 0;
-    text-align: center;
     height: 100vh;
-    width: 40px;
-    font-size: 1.5em;
-    font-weight: 600;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+    display: flex !important;
 
-    .side-icon{
+    .sidebar-title{
+      text-align: center;
       width: 40px;
+      font-size: 1.5em;
+      font-weight: 600;
+      writing-mode: vertical-rl;
       transform: rotate(180deg);
+      height: 100vh;
+
+      .side-icon{
+        width: 40px;
+        transform: rotate(180deg);
+      }
+    }
+
+    .sidebar{
+      transition: .3s;
+      padding: 0;
+      width: 0;
+      display: block;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    }
+    .open-sidebar{
+      padding: 2em;
+      width: 30em;
     }
   }
 }

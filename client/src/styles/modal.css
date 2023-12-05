@@ -147,14 +147,21 @@
 .modal-outer .modal-container .right-side .slider-outer .slider-wrapper .images-wrapper {
   width: 35em;
   display: flex;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .modal-outer .modal-container .right-side .slider-outer .slider-wrapper .images-wrapper .slider-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40em;
-  padding: 2em;
+}
+.modal-outer .modal-container .right-side .slider-outer .slider-wrapper .images-wrapper .slider-image .plan-wrapper {
+  width: 35em;
 }
 .modal-outer .modal-container .right-side .slider-outer .slider-wrapper .images-wrapper .slider-image .svg-polygon {
   position: fixed;
+  width: 35em;
+  opacity: 0.5;
 }
 .modal-outer .modal-container .right-side .slider-outer .buttons-wrapper {
   display: flex;

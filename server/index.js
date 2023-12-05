@@ -9,6 +9,7 @@ app.get('/', (req, res) => {
     const request = require('request');
     const options = {
         url: 'https://level.ru/api/contractor/flat/?limit=16&offset=0&project=nizheg',
+        // url: 'https://level.ru/api/flat/cropped_list?windows_directions="south"',
         auth: {
             username: 'photonlab.public@gmail.com',
             password: '?TORQ3*5am',

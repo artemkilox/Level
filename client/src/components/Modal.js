@@ -3,8 +3,24 @@ import {Button, Image} from "react-bootstrap";
 import heartImage from "../img/heart.svg";
 import imgIcon from "../img/imgIcon.svg";
 
+//////////////////////////////////////////
+import apartment1 from "../img/apartments/apartment.jpg";
+import star from "../img/starBlack.png";
+import galleryImage1 from "../img/архитектура 2.jpg";
+import galleryImage2 from "../img/благоустройство.jpg";
+import galleryImage3 from "../img/благоустройство 2.jpg";
+///////////////////////////////////////////
+
+
 const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
     const [currentImage, setCurrentImage] = useState(0)
+
+    // const newRoom = {id: 1, img: [apartment1, apartment1, apartment1],
+    //     article: 'K1-H8', title: "Аренда", characters: [{title: 'Площадь', value: "30 м²"},
+    //         {title: 'Корпус', value: "1"}, {title: 'Этаж', value: "1 из 29"}, {title: 'Цена за м²', value: "486 645 ₽"},
+    //         {title: 'Срок сдачи', value: "1 кв. 2026 г."}], saleDate: "до 31.07", price: "894 079 ₽/мес", salePrice: "762 755 ₽/мес",
+    //     tags: ['постирочная', 'мастер-спальня', 'гардеробная', 'моллированное окно'], supportItem: star,
+    //     galleryImages: [galleryImage1, galleryImage2, galleryImage3]}
 
     const setCurrent = (number) => {
         document.getElementById('btn-0').classList.remove('active')
@@ -138,30 +154,31 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
                                     <div
                                         className="slider-image"
                                     >
-                                        <Image src={room.plan}/>
+                                        <Image className="plan-wrapper" src={room.plan}/>
                                     </div>
                                     <div
                                         className="slider-image"
                                     >
-                                        <svg
-                                             className="svg-polygon"
-                                             x="0px" y="0px"
-                                             viewBox="0 0 1920 1080"
-                                        >
-                                            {/*<polygon points="70.9,12.9 89.7,51.1 131.8,57.2 101.3,86.9 108.5,128.8 70.9,109 33.2,128.8 40.4,86.9 9.9,57.2 52,51.1 " style={{fill: '#000'}}/>*/}
-                                            <polygon points={room.hover}/>
-                                            {/*<polygon style={{fill: '#000', opacity: 1, stroke: "#000", strokeWidth :"1"}} points={room.floor_hover.split('"')[1]} />*/}
-                                        </svg>
-                                        {/*/!*{parser.parseFromString(room.floor_hover, 'text/html')}*!/*/}
-                                        <Image className="inner-image" src={room.floor_plan}/>
+                                        <div className="plan-wrapper">
+                                            <svg
+                                                className="svg-polygon"
+                                                x="0px" y="0px"
+                                                viewBox="0 0 1920 1080"
+                                                style={{display: `${currentImage === 1 ? 'block' : 'none'}`}}
+                                            >
+                                                <polygon points={room.hover}/>
+                                            </svg>
+                                            <Image className="inner-image" src={room.floor_plan}/>
+                                        </div>
                                     </div>
-                                    <div
-                                        className="slider-image"
-                                    >
-                                        <Image src={room.plan}/>
-                                    </div>
+                                    {/*<div*/}
+                                    {/*    className="slider-image"*/}
+                                    {/*>*/}
+                                    {/*    <Image src={room.plan}/>*/}
+                                    {/*</div>*/}
 
-                                    {/*{room.img.map(image =>*/}
+
+                                    {/*{newRoom.img.map(image =>*/}
                                     {/*    <div*/}
                                     {/*        className="slider-image"*/}
                                     {/*    >*/}

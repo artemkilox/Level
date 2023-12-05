@@ -163,17 +163,34 @@
 .apartments-wrapper .sidebar-wrapper {
   position: fixed;
   right: 0;
-  text-align: center;
   height: 100vh;
+  display: flex !important;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar-title {
+  text-align: center;
   width: 40px;
   font-size: 1.5em;
   font-weight: 600;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  height: 100vh;
 }
-.apartments-wrapper .sidebar-wrapper .side-icon {
+.apartments-wrapper .sidebar-wrapper .sidebar-title .side-icon {
   width: 40px;
   transform: rotate(180deg);
+}
+.apartments-wrapper .sidebar-wrapper .sidebar {
+  transition: 0.3s;
+  padding: 0;
+  width: 0;
+  display: block;
+  height: 100vh;
+  background: white;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+}
+.apartments-wrapper .sidebar-wrapper .open-sidebar {
+  padding: 2em;
+  width: 30em;
 }
 
 /*# sourceMappingURL=apartments.css.map */
