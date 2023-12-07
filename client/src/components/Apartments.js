@@ -66,19 +66,19 @@ const Apartments = () => {
             />
             <div className="content-outer">
                 <div className="content-wrapper">
-                    <div
-                        className="top-menu"
-                    >
-                        <div className="menu-item">
-                            Этаж
-                        </div>
-                        <div className="menu-item">
-                            Площадь
-                        </div>
-                        <div className="menu-item">
-                            Стоимость
-                        </div>
-                    </div>
+                    {/*<div*/}
+                    {/*    className="top-menu"*/}
+                    {/*>*/}
+                    {/*    <div className="menu-item">*/}
+                    {/*        Этаж*/}
+                    {/*    </div>*/}
+                    {/*    <div className="menu-item">*/}
+                    {/*        Площадь*/}
+                    {/*    </div>*/}
+                    {/*    <div className="menu-item">*/}
+                    {/*        Стоимость*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className="apartments">
                         {apartments !== [] ? apartments.map(apartment =>
                             <div className="apartments-item" key={apartment.id}>
@@ -188,7 +188,7 @@ const Apartments = () => {
                         className="logo"
                         style={showOverlay ? {display: "flex"} : {display: "none"}}
                     >
-                        <Image src={levelLogoBlack}/><span>Академическая</span>
+                        <Image src={levelLogoBlack}/><span>Нижегородская</span>
                     </div>
                     <div
                         className="back-btn"
@@ -212,27 +212,46 @@ const Apartments = () => {
                 <div
                     className={showSidebar ? "sidebar open-sidebar" : "sidebar"}
                 >
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <div>Сайдбар</div>
-                    <MultiRangeSlider
-                        min={0}
-                        max={100}
-                        onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-                    />
-                    <Button
-                        onClick={() => setShowSidebar(false)}
+                    <div
+                        className={showSidebar ? "sidebar-inner show-sidebar-inner" : "sidebar-inner"}
                     >
-                        Закрыть
-                    </Button>
+                        <div className="filters-outer">
+                            <div className="filter-wrapper">
+                                <div className="filter-title">
+                                    Стоимость, <span>млн руб.</span>
+                                </div>
+                                <div className="filter-input">
+                                    <MultiRangeSlider
+                                        min={13.7}
+                                        max={65.6}
+                                        onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="filter-wrapper">
+                                <div className="filter-title">
+                                    Стоимость, <span>млн руб.</span>
+                                </div>
+                                <div className="filter-input">
+                                    <MultiRangeSlider
+                                        min={13.7}
+                                        max={65.6}
+                                        onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="buttons-wrapper">
+                            <Button>
+                                Сбросить фильтр
+                            </Button>
+                            <Button
+                                onClick={() => setShowSidebar(false)}
+                            >
+                                Закрыть
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

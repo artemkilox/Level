@@ -4,11 +4,11 @@ import heartImage from "../img/heart.svg";
 import imgIcon from "../img/imgIcon.svg";
 
 //////////////////////////////////////////
-import apartment1 from "../img/apartments/apartment.jpg";
-import star from "../img/starBlack.png";
-import galleryImage1 from "../img/архитектура 2.jpg";
-import galleryImage2 from "../img/благоустройство.jpg";
-import galleryImage3 from "../img/благоустройство 2.jpg";
+// import apartment1 from "../img/apartments/apartment.jpg";
+// import star from "../img/starBlack.png";
+// import galleryImage1 from "../img/архитектура 2.jpg";
+// import galleryImage2 from "../img/благоустройство.jpg";
+// import galleryImage3 from "../img/благоустройство 2.jpg";
 ///////////////////////////////////////////
 
 
@@ -28,8 +28,6 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
         document.getElementById('btn-2').classList.remove('active')
         document.getElementById('btn-' + number).classList.add('active')
     }
-
-    const parser = new DOMParser();
 
     return (
         <div
@@ -149,7 +147,7 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
                             <div className="slider-wrapper">
                                 <div
                                     className="images-wrapper"
-                                    style={{marginLeft: `${currentImage * (-35)}em`}}
+                                    style={{marginLeft: `${currentImage * (-45)}em`}}
                                 >
                                     <div
                                         className="slider-image"
@@ -171,11 +169,18 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
                                             <Image className="inner-image" src={room.floor_plan}/>
                                         </div>
                                     </div>
-                                    {/*<div*/}
-                                    {/*    className="slider-image"*/}
-                                    {/*>*/}
-                                    {/*    <Image src={room.plan}/>*/}
-                                    {/*</div>*/}
+                                    <div
+                                        className="slider-image"
+                                    >
+                                        <div
+                                            className="plan-wrapper"
+                                            // src={room.on_general_plan}
+                                            style={{width: '45em', height: '35em',
+                                                background: `url(${room.on_general_plan}) no-repeat center center`, backgroundSize: 'cover'}}
+                                        >
+
+                                        </div>
+                                    </div>
 
 
                                     {/*{newRoom.img.map(image =>*/}
@@ -220,16 +225,16 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="gallery-button">
-                            <Image
-                                className="gallery-button-icon"
-                                src={imgIcon}
-                                onClick={ () => {
-                                    setGalleryImages(room.galleryImages)
-                                    openGallery()
-                                }}
-                            />
-                        </div>
+                        {/*<div className="gallery-button">*/}
+                        {/*    <Image*/}
+                        {/*        className="gallery-button-icon"*/}
+                        {/*        src={imgIcon}*/}
+                        {/*        onClick={ () => {*/}
+                        {/*            setGalleryImages(room.galleryImages)*/}
+                        {/*            openGallery()*/}
+                        {/*        }}*/}
+                        {/*    />*/}
+                        {/*</div>*/}
                     </div>
                 </div> : <div></div>
             }

@@ -101,5 +101,21 @@
     position: fixed;
     bottom: 50px;
     left: 50px;
+
+    .logo{
+      left: 2em;
+      bottom: 4em;
+      position: fixed;
+      z-index: 999;
+      display: flex;
+      width: 80px;
+      align-items: flex-end;
+
+      span{
+        color: white;
+        margin-left: .6em;
+        font-size: 1.4em;
+      }
+    }
   }
 }

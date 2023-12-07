@@ -37,6 +37,7 @@
         }
       }
       .apartments{
+        margin-top: 5em;
         display: grid;
         grid-template-columns: 1fr 1fr;
 
@@ -222,6 +223,35 @@
       height: 100vh;
       background: white;
       box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+
+      .sidebar-inner{
+        display: none;
+        height: 100%;
+
+
+        .filters-outer{
+
+          .filter-wrapper{
+            margin-bottom: 3em;
+            .filter-title{
+
+            }
+            .filter-input{
+
+            }
+          }
+        }
+
+        .buttons-wrapper{
+
+        }
+
+      }
+      .show-sidebar-inner{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
     }
     .open-sidebar{
       padding: 2em;

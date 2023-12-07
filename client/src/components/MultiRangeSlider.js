@@ -76,7 +76,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 }}
                 className="thumb thumb--zindex-4"
             />
-
             <div className="slider">
                 <div className="slider__track" />
                 <div ref={range} className="slider__range" />

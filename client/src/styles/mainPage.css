@@ -80,5 +80,19 @@
   bottom: 50px;
   left: 50px;
 }
+.main-page-wrapper .footer .logo {
+  left: 2em;
+  bottom: 4em;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  width: 80px;
+  align-items: flex-end;
+}
+.main-page-wrapper .footer .logo span {
+  color: white;
+  margin-left: 0.6em;
+  font-size: 1.4em;
+}
 
 /*# sourceMappingURL=mainPage.css.map */

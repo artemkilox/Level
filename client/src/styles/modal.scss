@@ -69,7 +69,7 @@
         }
         .characters{
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-columns: 1fr 1fr 2fr;
           padding-bottom: 1.5em;
 
           .character-item{
@@ -162,11 +162,11 @@
         align-items: center;
 
         .slider-wrapper{
-          width: 35em;
+          width: 45em;
           overflow: hidden;
 
           .images-wrapper{
-            width: 35em;
+            width: 45em;
             display: flex;
             transition: .3s;
 
@@ -174,15 +174,16 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              width: 40em;
+              ////width: 35em;
+              //overflow: hidden;
 
               .plan-wrapper{
-                width: 35em;
+                width: 45em;
               }
 
               .svg-polygon{
                 position: fixed;
-                width: 35em;
+                width: 45em;
                 opacity: .5;
               }
             }

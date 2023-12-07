@@ -31,6 +31,7 @@
   padding: 50px 0;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments {
+  margin-top: 5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -187,6 +188,18 @@
   height: 100vh;
   background: white;
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner {
+  display: none;
+  height: 100%;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper {
+  margin-bottom: 3em;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .show-sidebar-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 .apartments-wrapper .sidebar-wrapper .open-sidebar {
   padding: 2em;

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 // import backImage from '../img/back-image.png'
 import menuImage1 from '../img/menu1.jpeg'
-import menuImage2 from '../img/menu2.jpg'
-import menuImage3 from '../img/menu3.jpeg'
-import menuImage4 from '../img/menu4.jpg'
+// import menuImage2 from '../img/menu2.jpg'
+// import menuImage3 from '../img/menu3.jpeg'
+// import menuImage4 from '../img/menu4.jpg'
 import menuImage5 from '../img/menu5.jpg'
 import star from '../img/star.png'
 import {Image} from "react-bootstrap";
@@ -18,6 +18,7 @@ import {
 } from "../utils/consts";
 import axios from "axios";
 import {$host} from "../http/index";
+import levelLogo from "../img/LevelLogo.svg";
 
 const MainPage = observer(() => {
     const [apartments, setApartments] = useState([])
@@ -37,9 +38,9 @@ const MainPage = observer(() => {
 
     const menuImages = [
         menuImage1,
-        menuImage2,
-        menuImage3,
-        menuImage4,
+        // menuImage2,
+        // menuImage3,
+        // menuImage4,
         menuImage5
     ]
 
@@ -54,18 +55,18 @@ const MainPage = observer(() => {
     const selectImage = (cur) => {
         document.getElementById('carouselImage0').classList.remove('current')
         document.getElementById('carouselImage1').classList.remove('current')
-        document.getElementById('carouselImage2').classList.remove('current')
-        document.getElementById('carouselImage3').classList.remove('current')
-        document.getElementById('carouselImage4').classList.remove('current')
+        // document.getElementById('carouselImage2').classList.remove('current')
+        // document.getElementById('carouselImage3').classList.remove('current')
+        // document.getElementById('carouselImage4').classList.remove('current')
         document.getElementById('carouselImage' + cur).classList.add('current')
     }
 
     const selectItem = (cur) => {
         document.getElementById('carouselItem0').classList.remove('current')
         document.getElementById('carouselItem1').classList.remove('current')
-        document.getElementById('carouselItem2').classList.remove('current')
-        document.getElementById('carouselItem3').classList.remove('current')
-        document.getElementById('carouselItem4').classList.remove('current')
+        // document.getElementById('carouselItem2').classList.remove('current')
+        // document.getElementById('carouselItem3').classList.remove('current')
+        // document.getElementById('carouselItem4').classList.remove('current')
         document.getElementById('carouselItem' + cur).classList.add('current')
     }
 
@@ -92,7 +93,7 @@ const MainPage = observer(() => {
                 }
             }}
             onMouseUp={() => {
-                if(diffX > 100 && currentPosition < 4){
+                if(diffX > 100 && currentPosition < menuImages.length){
                     setCursorX(positions[currentPosition+1])
                     selectImage(currentPosition+1)
                     selectItem(currentPosition+1)
@@ -134,6 +135,60 @@ const MainPage = observer(() => {
                                 <div className="title">Квартиры</div>
                             </div>
                         </div>
+                        {/*<div*/}
+                        {/*    className="carousel-item"*/}
+                        {/*    id="carouselItem1"*/}
+                        {/*>*/}
+                        {/*    <div className="icon">*/}
+                        {/*        <Image className="icon-image" src={star}/>*/}
+                        {/*    </div>*/}
+                        {/*    <div*/}
+                        {/*        className="text-wrapper"*/}
+                        {/*        onClick={() => {*/}
+                        {/*            localStorage.setItem("last", "1")*/}
+                        {/*            navigate(PARKING_ROUTE)*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*        <div className="number">02</div>*/}
+                        {/*        <div className="title">Паркинг</div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        {/*<div*/}
+                        {/*    className="carousel-item"*/}
+                        {/*    id="carouselItem2"*/}
+                        {/*>*/}
+                        {/*    <div className="icon">*/}
+                        {/*        <Image className="icon-image" src={star}/>*/}
+                        {/*    </div>*/}
+                        {/*    <div*/}
+                        {/*        className="text-wrapper"*/}
+                        {/*        onClick={() => {*/}
+                        {/*            localStorage.setItem("last", "2")*/}
+                        {/*            navigate(STORE_ROOMS_ROUTE)*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*        <div className="number">03</div>*/}
+                        {/*        <div className="title">Кладовые</div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        {/*<div*/}
+                        {/*    className="carousel-item"*/}
+                        {/*    id="carouselItem3"*/}
+                        {/*>*/}
+                        {/*    <div className="icon">*/}
+                        {/*        <Image className="icon-image" src={star}/>*/}
+                        {/*    </div>*/}
+                        {/*    <div*/}
+                        {/*        className="text-wrapper"*/}
+                        {/*        onClick={() => {*/}
+                        {/*            localStorage.setItem("last", "3")*/}
+                        {/*            navigate(STORAGE_FACILITIES_ROUTE)*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*        <div className="number">04</div>*/}
+                        {/*        <div className="title">Складские <br/> помещения</div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         <div
                             className="carousel-item"
                             id="carouselItem1"
@@ -145,64 +200,10 @@ const MainPage = observer(() => {
                                 className="text-wrapper"
                                 onClick={() => {
                                     localStorage.setItem("last", "1")
-                                    navigate(PARKING_ROUTE)
-                                }}
-                            >
-                                <div className="number">02</div>
-                                <div className="title">Паркинг</div>
-                            </div>
-                        </div>
-                        <div
-                            className="carousel-item"
-                            id="carouselItem2"
-                        >
-                            <div className="icon">
-                                <Image className="icon-image" src={star}/>
-                            </div>
-                            <div
-                                className="text-wrapper"
-                                onClick={() => {
-                                    localStorage.setItem("last", "2")
-                                    navigate(STORE_ROOMS_ROUTE)
-                                }}
-                            >
-                                <div className="number">03</div>
-                                <div className="title">Кладовые</div>
-                            </div>
-                        </div>
-                        <div
-                            className="carousel-item"
-                            id="carouselItem3"
-                        >
-                            <div className="icon">
-                                <Image className="icon-image" src={star}/>
-                            </div>
-                            <div
-                                className="text-wrapper"
-                                onClick={() => {
-                                    localStorage.setItem("last", "3")
-                                    navigate(STORAGE_FACILITIES_ROUTE)
-                                }}
-                            >
-                                <div className="number">04</div>
-                                <div className="title">Складские <br/> помещения</div>
-                            </div>
-                        </div>
-                        <div
-                            className="carousel-item"
-                            id="carouselItem4"
-                        >
-                            <div className="icon">
-                                <Image className="icon-image" src={star}/>
-                            </div>
-                            <div
-                                className="text-wrapper"
-                                onClick={() => {
-                                    localStorage.setItem("last", "4")
                                     navigate(GALLERY_ROUTE)
                                 }}
                             >
-                                <div className="number">05</div>
+                                <div className="number">02</div>
                                 <div className="title">Галерея</div>
                             </div>
                         </div>
@@ -211,23 +212,27 @@ const MainPage = observer(() => {
                         <div className="carousel-image-wrapper">
                             <Image className="carousel-image current" id="carouselImage0" src={menuImages[0]}/>
                         </div>
+                        {/*<div className="carousel-image-wrapper">*/}
+                        {/*    <Image className="carousel-image" id="carouselImage1" src={menuImages[1]}/>*/}
+                        {/*</div>*/}
+                        {/*<div className="carousel-image-wrapper">*/}
+                        {/*    <Image className="carousel-image" id="carouselImage2" src={menuImages[2]}/>*/}
+                        {/*</div>*/}
+                        {/*<div className="carousel-image-wrapper">*/}
+                        {/*    <Image className="carousel-image" id="carouselImage3" src={menuImages[3]}/>*/}
+                        {/*</div>*/}
                         <div className="carousel-image-wrapper">
                             <Image className="carousel-image" id="carouselImage1" src={menuImages[1]}/>
-                        </div>
-                        <div className="carousel-image-wrapper">
-                            <Image className="carousel-image" id="carouselImage2" src={menuImages[2]}/>
-                        </div>
-                        <div className="carousel-image-wrapper">
-                            <Image className="carousel-image" id="carouselImage3" src={menuImages[3]}/>
-                        </div>
-                        <div className="carousel-image-wrapper">
-                            <Image className="carousel-image" id="carouselImage4" src={menuImages[4]}/>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="footer">
-                LOGO
+                <div
+                    className="logo"
+                >
+                    <Image src={levelLogo}/><span>Нижегородская</span>
+                </div>
             </div>
         </div>
     );
