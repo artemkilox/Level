@@ -104,3 +104,7 @@
     pointer-events: all;
     position: relative;
 }
+
+.slider__left-value-ondrag{
+    /*margin-left: 50%;*/
+}
