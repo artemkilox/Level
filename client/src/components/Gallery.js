@@ -58,7 +58,7 @@ const Gallery = () => {
             </div>
             <div className="gallery-footer">
                 <div className="logo">
-                    <Image className="logo-image" src={levelLogo}/><span>Академическая</span>
+                    <Image className="logo-image" src={levelLogo}/><span>Нижегородская</span>
                 </div>
                 <div className="buttons">
                     <div

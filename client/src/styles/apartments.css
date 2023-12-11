@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Montserrat SemiBold";
   src: url("../fonts/Montserrat-SemiBold.ttf") format("truetype");
@@ -119,6 +120,23 @@
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .follow .follow-item {
   width: 50px;
 }
+.apartments-wrapper .content-outer .content-wrapper .pagination {
+  margin-top: 2em;
+  margin-bottom: 5em;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+.apartments-wrapper .content-outer .content-wrapper .pagination .prev-page, .apartments-wrapper .content-outer .content-wrapper .pagination .next-page {
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 1px solid black;
+  width: 35px;
+  text-align: center;
+}
+.apartments-wrapper .content-outer .content-wrapper .pagination .page {
+  padding: 0.5em;
+}
 .apartments-wrapper .content-outer .content-wrapper .logo {
   left: 2em;
   bottom: 4em;
@@ -178,7 +196,7 @@
 }
 .apartments-wrapper .sidebar-wrapper .sidebar-title .side-icon {
   width: 40px;
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 .apartments-wrapper .sidebar-wrapper .sidebar {
   transition: 0.3s;
@@ -195,6 +213,125 @@
 }
 .apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper {
   margin-bottom: 3em;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper .filter-title {
+  font-weight: bold;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper .filter-title span {
+  opacity: 0.5;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper .rooms {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  margin: 2em auto 0;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper .rooms .room-item {
+  display: block;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 1em 0.5em;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .filter-wrapper .rooms [type=checkbox]:checked + .room-item {
+  background: black;
+  color: white;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters {
+  display: flex;
+  justify-content: space-between;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper {
+  align-items: center;
+  display: flex;
+  margin: 0.5em 0;
+  /* Base for label styling */
+  /* checkbox aspect */
+  /* checked mark aspect */
+  /* checked mark aspect changes */
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:not(:checked),
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:checked {
+  position: absolute;
+  left: -9999px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:not(:checked) + label,
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:checked + label {
+  position: relative;
+  padding-left: 40px;
+  cursor: pointer;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:not(:checked) + label:before,
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:checked + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #aaa;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:not(:checked) + label:after,
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:checked + label:after {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-size: 14px;
+  color: #000000;
+  transition: all 0.2s;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper [type=checkbox]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper .checkbox {
+  width: 18px;
+  height: 18px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .filters-outer .split-filters .checkbox-filters .check-wrapper label {
+  font-size: 14px;
+  margin-left: 10px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .close-filters-button {
+  position: fixed;
+  margin-left: -100px;
+  height: 50px;
+  width: 50px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .close-filters-button:after {
+  content: "";
+  position: fixed;
+  height: 3px;
+  width: 40px;
+  background: black;
+  transform: rotate(-45deg);
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .close-filters-button:before {
+  content: "";
+  position: fixed;
+  height: 3px;
+  width: 40px;
+  background: black;
+  transform: rotate(45deg);
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+.apartments-wrapper .sidebar-wrapper .sidebar .sidebar-inner .buttons-wrapper .filter-button {
+  padding: 1em;
+  border-radius: 15px;
+  background: white;
 }
 .apartments-wrapper .sidebar-wrapper .sidebar .show-sidebar-inner {
   display: flex;

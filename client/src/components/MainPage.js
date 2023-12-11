@@ -6,6 +6,8 @@ import menuImage1 from '../img/menu1.jpeg'
 // import menuImage4 from '../img/menu4.jpg'
 import menuImage5 from '../img/menu5.jpg'
 import star from '../img/star.png'
+import galleryIcon from '../img/galleryIcon.svg'
+import planIcon from '../img/planIcon.svg'
 import {Image} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from 'react-router-dom'
@@ -122,7 +124,7 @@ const MainPage = observer(() => {
                             id="carouselItem0"
                         >
                             <div className="icon">
-                                <Image className="icon-image" src={star}/>
+                                <Image className="icon-image" src={planIcon}/>
                             </div>
                             <div
                                 className="text-wrapper"
@@ -194,7 +196,7 @@ const MainPage = observer(() => {
                             id="carouselItem1"
                         >
                             <div className="icon">
-                                <Image className="icon-image" src={star}/>
+                                <Image className="icon-image" src={galleryIcon}/>
                             </div>
                             <div
                                 className="text-wrapper"

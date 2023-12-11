@@ -37,6 +37,7 @@
 .main-page-wrapper .carousel-wrapper .carousel .carousel-items .carousel-item .icon .icon-image {
   width: 80px;
   height: 80px;
+  margin-right: 1em;
 }
 .main-page-wrapper .carousel-wrapper .carousel .carousel-items .carousel-item .text-wrapper {
   user-select: none;

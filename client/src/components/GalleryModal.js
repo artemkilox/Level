@@ -14,7 +14,7 @@ const GalleryModal = ({show, close, images}) => {
     const [curImage, setCurImage] = useState(0)
     const availableScreenWidth = window.screen.availWidth
 
-    console.log(images)
+    // console.log(images)
 
     return (
         <div

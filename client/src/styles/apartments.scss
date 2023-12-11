@@ -148,6 +148,25 @@
         }
       }
 
+      .pagination{
+        margin-top: 2em;
+        margin-bottom: 5em;
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+
+        .prev-page, .next-page{
+          padding: .5em;
+          border-radius: 10px;
+          border: 1px solid black;
+          width: 35px;
+          text-align: center;
+        }
+        .page{
+          padding: .5em;
+        }
+      }
+
       .logo{
         left: 2em;
         bottom: 4em;
@@ -211,7 +230,7 @@
 
       .side-icon{
         width: 40px;
-        transform: rotate(180deg);
+        transform: rotate(90deg);
       }
     }
 
@@ -234,18 +253,146 @@
           .filter-wrapper{
             margin-bottom: 3em;
             .filter-title{
+              font-weight: bold;
 
+              span{
+                opacity: .5;
+              }
             }
             .filter-input{
 
             }
+
+            .rooms{
+              display: flex;
+              justify-content: space-between;
+              width: 350px;
+              margin: 2em auto 0;
+
+              .room-item{
+                display: block;
+                text-align: center;
+                width: 50px;
+                height: 50px;
+                padding: 1em .5em;
+                border: 1px solid black;
+                border-radius: 10px;
+              }
+              [type="checkbox"]:checked + .room-item{
+                background: black;
+                color: white;
+              }
+            }
+          }
+
+          .split-filters{
+            display: flex;
+            justify-content: space-between;
+
+            .checkbox-filters{
+              margin-top: 1em;
+              display: flex;
+              flex-direction: column;
+
+              .check-wrapper{
+                align-items: center;
+                display: flex;
+                margin: .5em 0;
+
+                /* Base for label styling */
+                [type="checkbox"]:not(:checked),
+                [type="checkbox"]:checked {
+                  position: absolute;
+                  left: -9999px;
+                }
+                [type="checkbox"]:not(:checked) + label,
+                [type="checkbox"]:checked + label {
+                  position: relative;
+                  padding-left: 40px;
+                  cursor: pointer;
+                }
+
+                /* checkbox aspect */
+                [type="checkbox"]:not(:checked) + label:before,
+                [type="checkbox"]:checked + label:before {
+                  content: '';
+                  position: absolute;
+                  left:0;
+                  //top: 2px;
+                  width: 18px;
+                  height: 18px;
+                  border: 1px solid #aaa;
+                  background: #ffffff;
+                  border-radius: 5px;
+                }
+                /* checked mark aspect */
+                [type="checkbox"]:not(:checked) + label:after,
+                [type="checkbox"]:checked + label:after {
+                  content: '✔';
+                  position: absolute;
+                  top: 0;
+                  left: 5px;
+                  font-size: 14px;
+                  color: #000000;
+                  transition: all .2s;
+                }
+                /* checked mark aspect changes */
+                [type="checkbox"]:not(:checked) + label:after {
+                  opacity: 0;
+                  transform: scale(0);
+                }
+
+                .checkbox{
+                  width: 18px;
+                  height: 18px;
+                }
+                label{
+                  font-size: 14px;
+                  margin-left: 10px;
+                }
+              }
+            }
+          }
+        }
+
+        .close-filters-button{
+          position: fixed;
+          margin-left: -100px;
+          //top: 4em;
+          //left: 2em;
+          //position: fixed;
+          height: 50px;
+          width: 50px;
+
+          &:after {
+            content: '';
+            position: fixed;
+            height: 3px;
+            width: 40px;
+            background: black;
+            transform: rotate(-45deg);
+          }
+          &:before {
+            content: '';
+            position: fixed;
+            height: 3px;
+            width: 40px;
+            background: black;
+            transform: rotate(45deg);
           }
         }
 
         .buttons-wrapper{
+          display: flex;
+          justify-content: space-between;
+          width: 300px;
 
+          .filter-button{
+            padding: 1em;
+            border-radius: 15px;
+            background: white;
+          }
         }
-
       }
       .show-sidebar-inner{
         display: flex;
