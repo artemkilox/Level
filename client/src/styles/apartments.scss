@@ -13,8 +13,11 @@
 }
 
 .apartments-wrapper{
+  position: absolute;
+  z-index: 999;
   background: #f4f6f8;
-  display: flex;
+  width: 100%;
+  //display: flex;
   justify-content: space-between;
 
   .content-outer{
@@ -72,23 +75,28 @@
               .image{
                 padding: .5em;
                 width: 200px;
+                height: 200px;
               }
             }
           }
           .right-side{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
             .title{
               //padding-left: 15px;
-              padding: 15px 15px 1.5em;
+              padding: 30px 15px 1.5em;
             }
             .characters{
               padding-left: 15px;
-              border-bottom: 3px solid #f4f6f8;
+              //border-bottom: 3px solid #f4f6f8;
               display: flex;
               flex-wrap: wrap;
               width: 300px;
               //display: grid;
               //grid-template-columns: 1fr 1fr 1fr;
-              padding-bottom: 1.5em;
+              //padding-bottom: 1.5em;
 
               .character-item{
                 padding-right: 10px;
@@ -106,7 +114,9 @@
               }
             }
             .bottom-wrapper{
+              border-top: 3px solid #f4f6f8;
               //padding-left: 15px;
+              //height: 100%;
               display: flex;
               justify-content: center;
 
@@ -121,7 +131,7 @@
                 .price-value{
                   font-family: 'Montserrat ExtraBold';
                   font-size: 1.5em;
-                  padding-bottom: .5em;
+                  //padding-bottom: .5em;
                 }
                 .sale{
 

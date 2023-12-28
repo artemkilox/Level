@@ -5,7 +5,7 @@ import {useNavigate} from "react-router";
 import {MAIN_PAGE_ROUTE} from "../utils/consts";
 import levelLogo from '../img/LevelLogo.svg'
 
-const Gallery = () => {
+const Gallery = ({showGallery, hideGallery}) => {
     const navigate = useNavigate()
     const [isPressed, setIsPressed] = useState(false)
     const [pressedPoint, setPressedPoint] = useState(0)
@@ -17,6 +17,7 @@ const Gallery = () => {
     return (
         <div
             className="gallery-wrapper"
+            style={showGallery ? {display: "flex"} : {display: "none"}}
         >
             <div className="gallery">
                 <div
@@ -79,7 +80,7 @@ const Gallery = () => {
                 </div>
                 <div
                     className="back-button"
-                    onClick={() => navigate(MAIN_PAGE_ROUTE)}
+                    onClick={hideGallery}
                 >
                 </div>
             </div>

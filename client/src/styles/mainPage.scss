@@ -102,6 +102,14 @@
     position: fixed;
     bottom: 50px;
     left: 50px;
+    width: 100%;
+
+    .loading{
+      color: white;
+      float: right;
+      margin-right: 60px;
+      margin-bottom: -50px;
+    }
 
     .logo{
       left: 2em;

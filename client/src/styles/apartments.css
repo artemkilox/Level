@@ -12,8 +12,10 @@
   font-weight: 500;
 }
 .apartments-wrapper {
+  position: absolute;
+  z-index: 999;
   background: #f4f6f8;
-  display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 .apartments-wrapper .content-outer {
@@ -63,17 +65,21 @@
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .left-side .image-wrapper .image {
   padding: 0.5em;
   width: 200px;
+  height: 200px;
+}
+.apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .title {
-  padding: 15px 15px 1.5em;
+  padding: 30px 15px 1.5em;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters {
   padding-left: 15px;
-  border-bottom: 3px solid #f4f6f8;
   display: flex;
   flex-wrap: wrap;
   width: 300px;
-  padding-bottom: 1.5em;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .characters .character-item {
   padding-right: 10px;
@@ -89,6 +95,7 @@
   font-family: "Montserrat SemiBold";
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper {
+  border-top: 3px solid #f4f6f8;
   display: flex;
   justify-content: center;
 }
@@ -104,7 +111,6 @@
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .price-value {
   font-family: "Montserrat ExtraBold";
   font-size: 1.5em;
-  padding-bottom: 0.5em;
 }
 .apartments-wrapper .content-outer .content-wrapper .apartments .apartments-item .right-side .bottom-wrapper .price .sale span {
   font-family: "Montserrat SemiBold";

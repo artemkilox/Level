@@ -129,20 +129,20 @@ const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
                         </div>
                     </div>
                     <div className="right-side">
-                        <div className="top-content">
+                        {/*<div className="top-content">*/}
                             {/*<div className="icon">*/}
                             {/*    <Image className="icon-image" src={room.supportItem}/>*/}
                             {/*</div>*/}
-                            <div className="tags-wrapper">
-                                <div className="tags">
-                                    {/*{room.tags.map(tag =>*/}
-                                    {/*    <div*/}
-                                    {/*        className="tag-item"*/}
-                                    {/*    >{tag}</div>*/}
-                                    {/*)}*/}
-                                </div>
-                            </div>
-                        </div>
+                            {/*<div className="tags-wrapper">*/}
+                            {/*    <div className="tags">*/}
+                            {/*        /!*{room.tags.map(tag =>*!/*/}
+                            {/*        /!*    <div*!/*/}
+                            {/*        /!*        className="tag-item"*!/*/}
+                            {/*        /!*    >{tag}</div>*!/*/}
+                            {/*        /!*)}*!/*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                         <div className="slider-outer">
                             <div className="slider-wrapper">
                                 <div

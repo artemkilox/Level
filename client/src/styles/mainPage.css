@@ -80,6 +80,13 @@
   position: fixed;
   bottom: 50px;
   left: 50px;
+  width: 100%;
+}
+.main-page-wrapper .footer .loading {
+  color: white;
+  float: right;
+  margin-right: 60px;
+  margin-bottom: -50px;
 }
 .main-page-wrapper .footer .logo {
   left: 2em;

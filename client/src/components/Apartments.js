@@ -13,8 +13,18 @@ import {Form} from "react-bootstrap";
 import MultiRangeSlider from "./MultiRangeSlider";
 import {observer} from "mobx-react-lite";
 
-const Apartments = observer(() => {
-    const navigate = useNavigate()
+const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
+
+    Array.prototype.multiget = function(){
+        var args = Array.apply(null, arguments);
+        var result = [];
+        for(var i = args[0]; i < args[1]; i++){
+            result.push(this[i]);
+        }
+        return result;
+    }
+
+    // const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
     const [selectedRoom, setSelectedRoom] = useState('')
     // const [showGallery, setShowGallery] = useState(false)
@@ -36,18 +46,15 @@ const Apartments = observer(() => {
     const [windowsOn, setWindowsOn] = useState(['двор','город','парк','достопримечательности'])
     // const [rareFormats, setRareFormats] = useState([])
 
-    useEffect(() => {
-        $host.get('/apartments/10').then(result => {
-            // console.log(result)
-            setApartments(result.data.results)
-            $host.get('/apartments/' + result.data.count).then(result => {
-                setApartBase(result.data.results)
-                setFiltredAparts(result.data.results)
-            })
-        })
-    }, [])
 
-    console.log(filtredAparts)
+    useEffect(() => {
+        if(showApartments){
+            setApartments(loadedApartments.multiget(0 , limit))
+            setApartBase(loadedApartments)
+            setFiltredAparts(loadedApartments)
+        }
+    }, [showApartments])
+
 
     const setFilters = () => {
         const stud = document.getElementById('stud')
@@ -110,56 +117,23 @@ const Apartments = observer(() => {
             && roomsArr.indexOf(apart.room) !== -1
             && windowArr.indexOf(apart.windows_located) !== -1
         )
-
         setFiltredAparts(afterFilter)
-
         const quan = afterFilter.length > limit ? limit : afterFilter.length
-        // console.log(quan)
         setApartments(afterFilter.multiget(0 , quan))
-        // minPrice
-        // maxPrice
-        // minArea
-        // maxArea
-        // rooms
-        // windowsOn
-        // yard
-        // park
-        // city
-        // sight
     }
-
-    console.log(apartments)
-
-    Array.prototype.multiget = function(){
-        var args = Array.apply(null, arguments);
-        var result = [];
-        for(var i = args[0]; i < args[1]; i++){
-            result.push(this[i]);
-        }
-        return result;
-    }
-
-    // console.log(apartments)
 
     const onHide = () => {
         setShowModal(false)
         setSelectedRoom('')
     }
 
-    // const openGallery = () => {
-    //     setShowModal(false)
-    //     setShowGallery(true)
-    //     setShowOverlay(false)
-    // }
-    //
-    // const closeGallery = () => {
-    //     setShowModal(true)
-    //     setShowGallery(false)
-    //     setShowOverlay(true)
-    // }
+    // console.log(page)
+    // console.log(filtredAparts)
+    // console.log(Math.round(filtredAparts.length/limit) - (page + 1))
 
     return (
         <div
+            style={showApartments ? {display: "flex"} : {display: "none"}}
             className="apartments-wrapper"
         >
             <Modal
@@ -191,7 +165,14 @@ const Apartments = observer(() => {
                     {/*</div>*/}
                     <div className="apartments">
                         {apartments !== [] ? apartments.map(apartment =>
-                            <div className="apartments-item" key={apartment.id}>
+                            <div
+                                className="apartments-item"
+                                key={apartment.id}
+                                onClick={() => {
+                                    setSelectedRoom(apartment)
+                                    setShowModal(true)
+                                }}
+                            >
                                 <div className="left-side">
                                     <div className="article">
                                         {apartment.number}
@@ -200,10 +181,6 @@ const Apartments = observer(() => {
                                         <Image
                                             className="image"
                                             src={apartment.plan}
-                                            onClick={() => {
-                                                setSelectedRoom(apartment)
-                                                setShowModal(true)
-                                            }}
                                         />
                                     </div>
                                 </div>
@@ -299,8 +276,10 @@ const Apartments = observer(() => {
                         <div
                             className="prev-page"
                             onClick={() => {
-                                setApartments(filtredAparts.multiget(limit * (page - 1) , (limit * (page - 1)) + limit))
-                                setPage(page > 0 ? page - 1 : page)
+                                if(page > 0){
+                                    setApartments(filtredAparts.multiget(limit * (page - 1) , (limit * (page - 1)) + limit))
+                                    setPage(page - 1)
+                                }
                             }}
                         >
                             {"<"}
@@ -314,8 +293,13 @@ const Apartments = observer(() => {
                         <div
                             className="next-page"
                             onClick={() => {
-                                setPage(page < Math.round(filtredAparts.length/limit) ? page + 1 : page)
-                                setApartments(filtredAparts.multiget(limit * (page + 1) , (limit * (page + 1)) + limit))
+                                if(page < Math.round(filtredAparts.length/limit)){
+                                    setApartments(filtredAparts.multiget(limit * (page + 1) ,
+                                        Math.round(filtredAparts.length/limit) - (page + 1) === 1 ?
+                                            filtredAparts.length
+                                            : (limit * (page + 1)) + limit))
+                                    setPage(page + 1)
+                                }
                             }}
                         >
                             {">"}
@@ -329,7 +313,7 @@ const Apartments = observer(() => {
                     </div>
                     <div
                         className="back-btn"
-                        onClick={() => navigate(MAIN_PAGE_ROUTE)}
+                        onClick={hideApartments}
                         style={showOverlay ? {display: "block"} : {display: "none"}}
                     >
                     </div>
@@ -521,7 +505,7 @@ const Apartments = observer(() => {
             </div>
         </div>
     );
-});
+};
 
 export default Apartments;
 
