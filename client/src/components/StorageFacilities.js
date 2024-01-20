@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import ParkingModal from "./ParkingModal";
 import PantryModal from "./PantryModal";
 import CommercialModal from "./CommercialModal";
+import {$host} from "../http";
 
 const StorageFacilities = ({showCommercial, hideCommercial, loadedCommercial}) => {
 
@@ -23,6 +24,11 @@ const StorageFacilities = ({showCommercial, hideCommercial, loadedCommercial}) =
     }
     const onHide = () => {
         setShowModal(false)
+        let rooms = []
+        loadedCommercial.map(item => {
+            rooms.push({type: "commercial", building: item.building.number, number: item.number})
+        })
+        $host.post('/', {rooms})
         setSelectedRoom('')
     }
     const [showModal, setShowModal] = useState(false)
@@ -62,6 +68,9 @@ const StorageFacilities = ({showCommercial, hideCommercial, loadedCommercial}) =
                                 key={pantr.id}
                                 onClick={() => {
                                     setSelectedRoom(pantr)
+                                    let rooms = []
+                                    rooms.push({type: "commercial", building: pantr.building.number, number: pantr.number})
+                                    $host.post('/', {rooms})
                                     setShowModal(true)
                                 }}
                             >

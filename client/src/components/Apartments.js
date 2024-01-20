@@ -8,7 +8,7 @@ import {MAIN_PAGE_ROUTE} from "../utils/consts";
 import filterIcon from '../img/filterIcon.svg'
 import Modal from "./Modal";
 import GalleryModal from "./GalleryModal";
-import {$host} from "../http";
+import {$host} from "../http/index";
 import {Form} from "react-bootstrap";
 import MultiRangeSlider from "./MultiRangeSlider";
 import {observer} from "mobx-react-lite";
@@ -83,7 +83,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         if(five.checked){
             roomsArr.push(5)
         }
-        if(roomsArr === []){
+        if(roomsArr.length === 0){
             roomsArr = [0,1,2,3,4,5]
         }
 
@@ -105,7 +105,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         if (sight.checked){
             windowArr.push("достопримечательности")
         }
-        if(windowArr === []){
+        if(windowArr.length === 0){
             windowArr = ['двор','город','парк','достопримечательности']
         }
 
@@ -117,6 +117,14 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             && roomsArr.indexOf(apart.room) !== -1
             && windowArr.indexOf(apart.windows_located) !== -1
         )
+
+        let rooms = []
+
+        afterFilter.map(item => {
+            rooms.push({type: "apart", building: item.building, number: item.number})
+        })
+        // console.log(arrToSend)
+        $host.post('/', {rooms})
         setFiltredAparts(afterFilter)
         const quan = afterFilter.length > limit ? limit : afterFilter.length
         setApartments(afterFilter.multiget(0 , quan))
@@ -124,6 +132,11 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
 
     const onHide = () => {
         setShowModal(false)
+        let rooms = []
+        filtredAparts.map(item => {
+            rooms.push({type: "apart", building: item.building, number: item.number})
+        })
+        $host.post('/', {rooms})
         setSelectedRoom('')
     }
 
@@ -171,6 +184,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                 onClick={() => {
                                     setSelectedRoom(apartment)
                                     setShowModal(true)
+                                    let rooms = []
+                                    rooms.push({type: "apart", building: apartment.building, number: apartment.number})
+                                    $host.post('/', {rooms})
                                 }}
                             >
                                 <div className="left-side">
@@ -485,6 +501,12 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     setPage(0)
                                     setFiltredAparts(apartBase)
                                     setApartments(apartBase.multiget(0 , limit))
+                                    setShowSidebar(false)
+                                    let rooms = []
+                                    apartBase.map(item => {
+                                        rooms.push({type: "apart", building: item.building, number: item.number})
+                                    })
+                                    $host.post('/', {rooms})
                                 }}
                             >
                                 Сбросить фильтр

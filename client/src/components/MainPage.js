@@ -231,6 +231,11 @@ const MainPage = observer(() => {
                                     onClick={() => {
                                         if(currentPosition === 0){
                                             localStorage.setItem("last", "0")
+                                            let rooms = []
+                                            loadedApartments.map(item => {
+                                                rooms.push({type: "apart", building: item.building, number: item.number})
+                                            })
+                                            $host.post('/', {rooms})
                                             // navigate(APARTMENTS_ROUTE)
                                             setShowApartments(true)
                                         } else {
@@ -256,6 +261,11 @@ const MainPage = observer(() => {
                                     onClick={() => {
                                         if(currentPosition === 1){
                                             localStorage.setItem("last", "1")
+                                            let rooms = []
+                                            loadedParking.map(item => {
+                                                rooms.push({type: "parking", building: item.building, number: item.number})
+                                            })
+                                            $host.post('/', {rooms})
                                             setShowParking(true)
                                             // navigate(PARKING_ROUTE)
                                         } else {
@@ -281,6 +291,11 @@ const MainPage = observer(() => {
                                     onClick={() => {
                                         if(currentPosition === 2){
                                             localStorage.setItem("last", "2")
+                                            let rooms = []
+                                            loadedPantry.map(item => {
+                                                rooms.push({type: "pantry", building: item.building, number: item.number})
+                                            })
+                                            $host.post('/', {rooms})
                                             setShowPantry(true)
                                             // navigate(STORE_ROOMS_ROUTE)
                                         } else {
@@ -306,6 +321,11 @@ const MainPage = observer(() => {
                                     onClick={() => {
                                         if(currentPosition === 3){
                                             localStorage.setItem("last", "3")
+                                            let rooms = []
+                                            loadedCommercial.map(item => {
+                                                rooms.push({type: "commercial", building: item.building, number: item.number})
+                                            })
+                                            $host.post('/', {rooms})
                                             setShowCommercial(true)
                                             // navigate(STORAGE_FACILITIES_ROUTE)
                                         } else {

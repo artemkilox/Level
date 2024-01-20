@@ -8,6 +8,7 @@ import carIcon from "../img/carIcon.svg";
 import MultiRangeSlider from "./MultiRangeSlider";
 import {useEffect} from "react";
 import ParkingModal from "./ParkingModal";
+import {$host} from "../http";
 
 const Parking = ({showParking, hideParking, loadedParking}) => {
 
@@ -21,6 +22,11 @@ const Parking = ({showParking, hideParking, loadedParking}) => {
     }
     const onHide = () => {
         setShowModal(false)
+        let rooms = []
+        loadedParking.map(item => {
+            rooms.push({type: "parking", building: item.building, number: item.number})
+        })
+        $host.post('/', {rooms})
         setSelectedRoom('')
     }
     const [showModal, setShowModal] = useState(false)
@@ -59,6 +65,9 @@ const Parking = ({showParking, hideParking, loadedParking}) => {
                                 key={parkPlace.id}
                                 onClick={() => {
                                     setSelectedRoom(parkPlace)
+                                    let rooms = []
+                                    rooms.push({type: "parking", building: parkPlace.building, number: parkPlace.number})
+                                    $host.post('/', {rooms})
                                     setShowModal(true)
                                 }}
                             >

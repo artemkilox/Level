@@ -91,6 +91,14 @@ app.get('/commercial/:number', (req, res) => {
     }
     request(options, callback);
 })
+app.post('/', (req, res) => {
+    const {rooms} = req.body
+    console.log(rooms)
+    // type - тип квартиры: aparts - апартаменты, parking - парковка, pantry - складские помещения, commercial - коммерческое помещение
+    // building - корпус
+    // number - Номер квартиры
+    res.sendStatus(200)
+})
 
 const start = async () => {
     try{

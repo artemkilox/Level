@@ -9,6 +9,7 @@ import MultiRangeSlider from "./MultiRangeSlider";
 import {useEffect} from "react";
 import ParkingModal from "./ParkingModal";
 import PantryModal from "./PantryModal";
+import {$host} from "../http";
 
 const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
 
@@ -22,6 +23,11 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
     }
     const onHide = () => {
         setShowModal(false)
+        let rooms = []
+        loadedPantry.map(item => {
+            rooms.push({type: "pantry", building: item.building, number: item.number})
+        })
+        $host.post('/', {rooms})
         setSelectedRoom('')
     }
     const [showModal, setShowModal] = useState(false)
@@ -61,6 +67,9 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
                                 key={pantr.id}
                                 onClick={() => {
                                     setSelectedRoom(pantr)
+                                    let rooms = []
+                                    rooms.push({type: "pantry", building: pantr.building, number: pantr.number})
+                                    $host.post('/', {rooms})
                                     setShowModal(true)
                                 }}
                             >
