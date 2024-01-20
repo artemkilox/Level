@@ -192,14 +192,20 @@
 .gallery-wrapper .gallery-footer .buttons .next div:after, .gallery-wrapper .gallery-footer .buttons .next div :before {
   box-sizing: border-box;
 }
-.gallery-wrapper .gallery-footer .back-button {
+.gallery-wrapper .gallery-footer .back-btn-wrapper {
+  width: 50px;
+  height: 50px;
+}
+.gallery-wrapper .gallery-footer .back-btn-wrapper .back-button {
+  margin-top: 1em;
+  position: fixed;
   display: block;
   border-radius: 3px;
   width: 40px;
   height: 4px;
   background: #ffffff;
 }
-.gallery-wrapper .gallery-footer .back-button::before {
+.gallery-wrapper .gallery-footer .back-btn-wrapper .back-button::before {
   display: block;
   content: "";
   margin-top: -15px;
@@ -208,7 +214,7 @@
   height: 4px;
   background: #ffffff;
 }
-.gallery-wrapper .gallery-footer .back-button::after {
+.gallery-wrapper .gallery-footer .back-btn-wrapper .back-button::after {
   display: block;
   content: "";
   margin-top: 26px;

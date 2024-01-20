@@ -191,12 +191,12 @@ const MainPage = observer(() => {
                     }
                 }}
                 onMouseUp={() => {
-                    if(diffX > 100 && currentPosition < menuImages.length){
+                    if(diffX > 50 && currentPosition < menuImages.length){
                         setCursorX(positions[currentPosition+1])
                         selectImage(currentPosition+1)
                         selectItem(currentPosition+1)
                         setCurrentPosition(currentPosition+1)
-                    } else if(diffX < -100 && currentPosition > 0){
+                    } else if(diffX < -50 && currentPosition > 0){
                         setCursorX(positions[currentPosition-1])
                         selectImage(currentPosition-1)
                         selectItem(currentPosition-1)
@@ -222,28 +222,28 @@ const MainPage = observer(() => {
                             <div
                                 className="carousel-item current"
                                 id="carouselItem0"
+                                onClick={() => {
+                                    if(currentPosition === 0){
+                                        localStorage.setItem("last", "0")
+                                        let rooms = []
+                                        loadedApartments.map(item => {
+                                            rooms.push({type: "apart", building: item.building, number: item.number, floor: item.floor})
+                                        })
+                                        $host.post('/', {rooms})
+                                        // navigate(APARTMENTS_ROUTE)
+                                        setShowApartments(true)
+                                    } else {
+                                        selectImage(0)
+                                        selectItem(0)
+                                        setCurrentPosition(0)
+                                    }
+                                }}
                             >
                                 <div className="icon">
                                     <Image className="icon-image" src={planIcon}/>
                                 </div>
                                 <div
                                     className="text-wrapper"
-                                    onClick={() => {
-                                        if(currentPosition === 0){
-                                            localStorage.setItem("last", "0")
-                                            let rooms = []
-                                            loadedApartments.map(item => {
-                                                rooms.push({type: "apart", building: item.building, number: item.number})
-                                            })
-                                            $host.post('/', {rooms})
-                                            // navigate(APARTMENTS_ROUTE)
-                                            setShowApartments(true)
-                                        } else {
-                                            selectImage(0)
-                                            selectItem(0)
-                                            setCurrentPosition(0)
-                                        }
-                                    }}
                                 >
                                     <div className="number">01</div>
                                     <div className="title">Квартиры</div>
@@ -252,28 +252,28 @@ const MainPage = observer(() => {
                             <div
                                 className="carousel-item"
                                 id="carouselItem1"
+                                onClick={() => {
+                                    if(currentPosition === 1){
+                                        localStorage.setItem("last", "1")
+                                        let rooms = []
+                                        loadedParking.map(item => {
+                                            rooms.push({type: "parking", building: item.building, number: item.number})
+                                        })
+                                        $host.post('/', {rooms})
+                                        setShowParking(true)
+                                        // navigate(PARKING_ROUTE)
+                                    } else {
+                                        selectImage(1)
+                                        selectItem(1)
+                                        setCurrentPosition(1)
+                                    }
+                                }}
                             >
                                 <div className="icon">
                                     <Image className="icon-image" src={parkingIcon}/>
                                 </div>
                                 <div
                                     className="text-wrapper"
-                                    onClick={() => {
-                                        if(currentPosition === 1){
-                                            localStorage.setItem("last", "1")
-                                            let rooms = []
-                                            loadedParking.map(item => {
-                                                rooms.push({type: "parking", building: item.building, number: item.number})
-                                            })
-                                            $host.post('/', {rooms})
-                                            setShowParking(true)
-                                            // navigate(PARKING_ROUTE)
-                                        } else {
-                                            selectImage(1)
-                                            selectItem(1)
-                                            setCurrentPosition(1)
-                                        }
-                                    }}
                                 >
                                     <div className="number">02</div>
                                     <div className="title">Паркинг</div>
@@ -282,28 +282,28 @@ const MainPage = observer(() => {
                             <div
                                 className="carousel-item"
                                 id="carouselItem2"
+                                onClick={() => {
+                                    if(currentPosition === 2){
+                                        localStorage.setItem("last", "2")
+                                        let rooms = []
+                                        loadedPantry.map(item => {
+                                            rooms.push({type: "pantry", building: item.building, number: item.number})
+                                        })
+                                        $host.post('/', {rooms})
+                                        setShowPantry(true)
+                                        // navigate(STORE_ROOMS_ROUTE)
+                                    } else {
+                                        selectImage(2)
+                                        selectItem(2)
+                                        setCurrentPosition(2)
+                                    }
+                                }}
                             >
                                 <div className="icon">
                                     <Image className="icon-image" src={pantryIcon}/>
                                 </div>
                                 <div
                                     className="text-wrapper"
-                                    onClick={() => {
-                                        if(currentPosition === 2){
-                                            localStorage.setItem("last", "2")
-                                            let rooms = []
-                                            loadedPantry.map(item => {
-                                                rooms.push({type: "pantry", building: item.building, number: item.number})
-                                            })
-                                            $host.post('/', {rooms})
-                                            setShowPantry(true)
-                                            // navigate(STORE_ROOMS_ROUTE)
-                                        } else {
-                                            selectImage(2)
-                                            selectItem(2)
-                                            setCurrentPosition(2)
-                                        }
-                                    }}
                                 >
                                     <div className="number">03</div>
                                     <div className="title">Кладовые</div>
@@ -312,28 +312,28 @@ const MainPage = observer(() => {
                             <div
                                 className="carousel-item"
                                 id="carouselItem3"
+                                onClick={() => {
+                                    if(currentPosition === 3){
+                                        localStorage.setItem("last", "3")
+                                        let rooms = []
+                                        loadedCommercial.map(item => {
+                                            rooms.push({type: "commercial", building: item.building, number: item.number})
+                                        })
+                                        $host.post('/', {rooms})
+                                        setShowCommercial(true)
+                                        // navigate(STORAGE_FACILITIES_ROUTE)
+                                    } else {
+                                        selectImage(3)
+                                        selectItem(3)
+                                        setCurrentPosition(3)
+                                    }
+                                }}
                             >
                                 <div className="icon">
                                     <Image className="icon-image" src={commerceIcon}/>
                                 </div>
                                 <div
                                     className="text-wrapper"
-                                    onClick={() => {
-                                        if(currentPosition === 3){
-                                            localStorage.setItem("last", "3")
-                                            let rooms = []
-                                            loadedCommercial.map(item => {
-                                                rooms.push({type: "commercial", building: item.building, number: item.number})
-                                            })
-                                            $host.post('/', {rooms})
-                                            setShowCommercial(true)
-                                            // navigate(STORAGE_FACILITIES_ROUTE)
-                                        } else {
-                                            selectImage(3)
-                                            selectItem(3)
-                                            setCurrentPosition(3)
-                                        }
-                                    }}
                                 >
                                     <div className="number">04</div>
                                     <div className="title">Складские <br/> помещения</div>
@@ -342,23 +342,23 @@ const MainPage = observer(() => {
                             <div
                                 className="carousel-item"
                                 id="carouselItem4"
+                                onClick={() => {
+                                    if(currentPosition === 4){
+                                        localStorage.setItem("last", "4")
+                                        // navigate(GALLERY_ROUTE)
+                                        setShowGallery(true)
+                                    } else {
+                                        selectImage(4)
+                                        selectItem(4)
+                                        setCurrentPosition(4)
+                                    }
+                                }}
                             >
                                 <div className="icon">
                                     <Image className="icon-image" src={galleryIcon}/>
                                 </div>
                                 <div
                                     className="text-wrapper"
-                                    onClick={() => {
-                                        if(currentPosition === 4){
-                                            localStorage.setItem("last", "4")
-                                            // navigate(GALLERY_ROUTE)
-                                            setShowGallery(true)
-                                        } else {
-                                            selectImage(4)
-                                            selectItem(4)
-                                            setCurrentPosition(4)
-                                        }
-                                    }}
                                 >
                                     <div className="number">05</div>
                                     <div className="title">Галерея</div>

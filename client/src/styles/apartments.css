@@ -156,9 +156,16 @@
   margin-left: 0.6em;
   font-size: 1.4em;
 }
-.apartments-wrapper .content-outer .content-wrapper .back-btn {
+.apartments-wrapper .content-outer .content-wrapper .back-btn-wrapper {
   right: 2em;
   bottom: 4em;
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  z-index: 999;
+}
+.apartments-wrapper .content-outer .content-wrapper .back-btn-wrapper .back-btn {
+  margin-top: 1em;
   position: fixed;
   z-index: 999;
   display: block;
@@ -167,7 +174,7 @@
   height: 4px;
   background: black;
 }
-.apartments-wrapper .content-outer .content-wrapper .back-btn::before {
+.apartments-wrapper .content-outer .content-wrapper .back-btn-wrapper .back-btn::before {
   display: block;
   content: "";
   margin-top: -15px;
@@ -176,7 +183,7 @@
   height: 4px;
   background: black;
 }
-.apartments-wrapper .content-outer .content-wrapper .back-btn::after {
+.apartments-wrapper .content-outer .content-wrapper .back-btn-wrapper .back-btn::after {
   display: block;
   content: "";
   margin-top: 26px;

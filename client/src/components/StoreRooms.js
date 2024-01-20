@@ -171,10 +171,14 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
                         <Image src={levelLogoBlack}/><span>Нижегородская</span>
                     </div>
                     <div
-                        className="back-btn"
+                        className="back-btn-wrapper"
                         onClick={hidePantry}
                         style={showOverlay ? {display: "block"} : {display: "none"}}
                     >
+                        <div
+                            className="back-btn"
+                        >
+                        </div>
                     </div>
                 </div>
             </div>

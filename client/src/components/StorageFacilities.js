@@ -180,10 +180,14 @@ const StorageFacilities = ({showCommercial, hideCommercial, loadedCommercial}) =
                         <Image src={levelLogoBlack}/><span>Нижегородская</span>
                     </div>
                     <div
-                        className="back-btn"
+                        className="back-btn-wrapper"
                         onClick={hideCommercial}
                         style={showOverlay ? {display: "block"} : {display: "none"}}
                     >
+                        <div
+                            className="back-btn"
+                        >
+                        </div>
                     </div>
                 </div>
             </div>

@@ -211,7 +211,14 @@
       }
     }
 
+  .back-btn-wrapper{
+    //background: red;
+    width: 50px;
+    height: 50px;
+
     .back-button{
+      margin-top: 1em;
+      position: fixed;
       display: block;
       border-radius: 3px;
       width: 40px;
@@ -237,6 +244,7 @@
         background: #ffffff;
       }
     }
+  }
   }
 }
 

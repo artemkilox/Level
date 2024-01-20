@@ -79,9 +79,13 @@ const Gallery = ({showGallery, hideGallery}) => {
                     </div>
                 </div>
                 <div
-                    className="back-button"
+                    className="back-btn-wrapper"
                     onClick={hideGallery}
                 >
+                    <div
+                        className="back-button"
+                    >
+                    </div>
                 </div>
             </div>
         </div>

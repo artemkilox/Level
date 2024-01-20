@@ -121,7 +121,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         let rooms = []
 
         afterFilter.map(item => {
-            rooms.push({type: "apart", building: item.building, number: item.number})
+            rooms.push({type: "apart", building: item.building, number: item.number, floor: item.floor})
         })
         // console.log(arrToSend)
         $host.post('/', {rooms})
@@ -185,7 +185,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     setSelectedRoom(apartment)
                                     setShowModal(true)
                                     let rooms = []
-                                    rooms.push({type: "apart", building: apartment.building, number: apartment.number})
+                                    rooms.push({type: "apart", building: apartment.building, number: apartment.number, floor: apartment.floor})
                                     $host.post('/', {rooms})
                                 }}
                             >
@@ -328,10 +328,14 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                         <Image src={levelLogoBlack}/><span>Нижегородская</span>
                     </div>
                     <div
-                        className="back-btn"
+                        className="back-btn-wrapper"
                         onClick={hideApartments}
                         style={showOverlay ? {display: "block"} : {display: "none"}}
                     >
+                        <div
+                            className="back-btn"
+                        >
+                        </div>
                     </div>
                 </div>
             </div>
@@ -466,27 +470,27 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="filter-wrapper">
-                                    <div className="filter-title">
-                                        Редкие форматы
-                                    </div>
-                                    <div
-                                        className="checkbox-filters"
-                                    >
-                                        <div className="check-wrapper">
-                                            <input id="threeSide" className="checkbox" type="checkbox"/>
-                                            <label htmlFor="threeSide">трехсторонняя</label>
-                                        </div>
-                                        <div className="check-wrapper">
-                                            <input id="bathWindow" className="checkbox" type="checkbox"/>
-                                            <label htmlFor="bathWindow">с окном в ванной</label>
-                                        </div>
-                                        <div className="check-wrapper">
-                                            <input id="patio" className="checkbox" type="checkbox"/>
-                                            <label htmlFor="patio">с патио</label>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/*<div className="filter-wrapper">*/}
+                                {/*    <div className="filter-title">*/}
+                                {/*        Редкие форматы*/}
+                                {/*    </div>*/}
+                                {/*    <div*/}
+                                {/*        className="checkbox-filters"*/}
+                                {/*    >*/}
+                                {/*        <div className="check-wrapper">*/}
+                                {/*            <input id="threeSide" className="checkbox" type="checkbox"/>*/}
+                                {/*            <label htmlFor="threeSide">трехсторонняя</label>*/}
+                                {/*        </div>*/}
+                                {/*        <div className="check-wrapper">*/}
+                                {/*            <input id="bathWindow" className="checkbox" type="checkbox"/>*/}
+                                {/*            <label htmlFor="bathWindow">с окном в ванной</label>*/}
+                                {/*        </div>*/}
+                                {/*        <div className="check-wrapper">*/}
+                                {/*            <input id="patio" className="checkbox" type="checkbox"/>*/}
+                                {/*            <label htmlFor="patio">с патио</label>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                         <div
