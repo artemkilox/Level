@@ -161,7 +161,7 @@ const StorageFacilities = ({showCommercial, hideCommercial, loadedCommercial}) =
                         <div
                             className="next-page"
                             onClick={() => {
-                                if(page < Math.round(pantryFiltred.length/limit)){
+                                if(page < Math.round(pantryFiltred.length/limit)-1){
                                     setPantry(pantryFiltred.multiget(limit * (page + 1) ,
                                         Math.round(pantryFiltred.length/limit) - (page + 1) === 1 ?
                                             pantryFiltred.length

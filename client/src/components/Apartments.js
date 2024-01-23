@@ -140,9 +140,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         setSelectedRoom('')
     }
 
-    // console.log(page)
+    console.log(page)
     // console.log(filtredAparts)
-    // console.log(Math.round(filtredAparts.length/limit) - (page + 1))
+    console.log(Math.round(filtredAparts.length/limit))
 
     return (
         <div
@@ -309,7 +309,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                         <div
                             className="next-page"
                             onClick={() => {
-                                if(page < Math.round(filtredAparts.length/limit)){
+                                if(page < Math.round(filtredAparts.length/limit)-1){
                                     setApartments(filtredAparts.multiget(limit * (page + 1) ,
                                         Math.round(filtredAparts.length/limit) - (page + 1) === 1 ?
                                             filtredAparts.length

@@ -139,6 +139,7 @@ const MainPage = observer(() => {
 
     const hideApartments = () => {
         setShowApartments(false)
+        $host.post('/', {rooms: 'apartments-closed'})
     }
     const hideParking = () => {
         setShowParking(false)
@@ -152,9 +153,21 @@ const MainPage = observer(() => {
     const hideGallery = () => {
         setShowGallery(false)
     }
-
+    // apartmentLoaded
+    // pantryLoaded
+    // parkingLoaded
+    // commercialLoaded
     return (
         <div>
+            <div
+                style={apartmentLoaded && pantryLoaded && parkingLoaded && commercialLoaded? {display: "none"} : {display: "flex"}}
+                className="loading">
+                <div
+                    className="loading-item"
+                >
+                    Загрузка...
+                </div>
+            </div>
             <Apartments
                 showApartments={showApartments}
                 hideApartments={hideApartments}
@@ -230,6 +243,7 @@ const MainPage = observer(() => {
                                             rooms.push({type: "apart", building: item.building, number: item.number, floor: item.floor})
                                         })
                                         $host.post('/', {rooms})
+                                        $host.post('/', {rooms: 'apartments-open'})
                                         // navigate(APARTMENTS_ROUTE)
                                         setShowApartments(true)
                                     } else {
@@ -385,20 +399,20 @@ const MainPage = observer(() => {
                     </div>
                 </div>
                 <div className="footer">
-                    <div className="loading">
-                        <div
-                            style={apartmentLoaded ? {display: "none"} : {display: "block"}}
-                            className="loading-item">Загрузка апартаментов...</div>
-                        <div
-                            style={pantryLoaded ? {display: "none"} : {display: "block"}}
-                            className="loading-item">Загрузка кладовых...</div>
-                        <div
-                            style={parkingLoaded ? {display: "none"} : {display: "block"}}
-                            className="loading-item">Загрузка паркингов...</div>
-                        <div
-                            style={commercialLoaded ? {display: "none"} : {display: "block"}}
-                            className="loading-item">Загрузка складских помещений...</div>
-                    </div>
+                    {/*<div className="loading">*/}
+                    {/*    <div*/}
+                    {/*        style={apartmentLoaded ? {display: "none"} : {display: "block"}}*/}
+                    {/*        className="loading-item">Загрузка апартаментов...</div>*/}
+                    {/*    <div*/}
+                    {/*        style={pantryLoaded ? {display: "none"} : {display: "block"}}*/}
+                    {/*        className="loading-item">Загрузка кладовых...</div>*/}
+                    {/*    <div*/}
+                    {/*        style={parkingLoaded ? {display: "none"} : {display: "block"}}*/}
+                    {/*        className="loading-item">Загрузка паркингов...</div>*/}
+                    {/*    <div*/}
+                    {/*        style={commercialLoaded ? {display: "none"} : {display: "block"}}*/}
+                    {/*        className="loading-item">Загрузка складских помещений...</div>*/}
+                    {/*</div>*/}
                     <div
                         className="logo"
                         style={showApartments || showPantry || showParking || showCommercial || showGallery ? {display: "none"} : {display: "flex"}}

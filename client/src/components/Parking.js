@@ -151,7 +151,7 @@ const Parking = ({showParking, hideParking, loadedParking}) => {
                         <div
                             className="next-page"
                             onClick={() => {
-                                if(page < Math.round(parkingFiltred.length/limit)){
+                                if(page < Math.round(parkingFiltred.length/limit)-1){
                                     setParking(parkingFiltred.multiget(limit * (page + 1) ,
                                         Math.round(parkingFiltred.length/limit) - (page + 1) === 1 ?
                                             parkingFiltred.length

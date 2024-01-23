@@ -100,6 +100,14 @@ app.post('/', (req, res) => {
     res.sendStatus(200)
 })
 
+// app.post('/opener', (req, res) => {
+//     const apart = req.body
+//     console.log(apart)
+//     // type - тип квартиры: aparts - апартаменты, parking - парковка, pantry - складские помещения, commercial - коммерческое помещение
+//     // building - корпус
+//     // number - Номер квартиры
+//     res.sendStatus(200)
+// })
 const start = async () => {
     try{
         app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
