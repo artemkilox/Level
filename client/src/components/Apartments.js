@@ -44,7 +44,13 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     const [maxArea, setMaxArea] = useState(344)
     const [rooms, setRooms] = useState([0,1,2,3,4,5])
     const [windowsOn, setWindowsOn] = useState(['двор','город','парк','достопримечательности'])
+    ///
+    const [filterFloor, setFilterFloor] = useState('')
+    const [filterBuild, setFilterBuild] = useState('')
     // const [rareFormats, setRareFormats] = useState([])
+
+    // console.log(filterFloor)
+    // console.log(filterBuild)
 
 
     useEffect(() => {
@@ -116,7 +122,14 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             && apart.area < maxArea
             && roomsArr.indexOf(apart.room) !== -1
             && windowArr.indexOf(apart.windows_located) !== -1
+            && apart.building === filterBuild
+            && apart.floor === Number(filterFloor)
         )
+
+        console.log(apartBase.filter((apart) =>
+            apart.building === "3"
+            && apart.floor === 2
+        ))
 
         let rooms = []
 
@@ -290,6 +303,17 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                     {apartments.length === 0 ? <div>Таких квартир нет</div> : <div></div>}
                     <div className="pagination">
                         <div
+                            className="prev-page first"
+                            onClick={() => {
+                                if(page > 0){
+                                    setApartments(filtredAparts.multiget(0 , limit))
+                                    setPage(0)
+                                }
+                            }}
+                        >
+                            {"<<"}
+                        </div>
+                        <div
                             className="prev-page"
                             onClick={() => {
                                 if(page > 0){
@@ -302,7 +326,16 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                         </div>
                         <div className="page">
                             {filtredAparts.length > 0 ?
-                                <div>{page + 1} / {Math.round(filtredAparts.length/limit)}</div> :
+                                <div className="pages-wrapper">
+                                    {page + 1} / {Math.round(filtredAparts.length/limit) > 0 ? Math.round(filtredAparts.length/limit) : 1}
+                                    {/*<div className="page-button current">*/}
+                                    {/*    {page + 1}*/}
+                                    {/*</div>*/}
+                                    {/*/*/}
+                                    {/*<div className="page-button">*/}
+                                    {/*    {Math.round(filtredAparts.length/limit)}*/}
+                                    {/*</div>*/}
+                                </div> :
                                 <div>Загрузка...</div>
                             }
                         </div>
@@ -319,6 +352,20 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                             }}
                         >
                             {">"}
+                        </div>
+                        <div
+                            className="next-page last"
+                            onClick={() => {
+                                if(page < Math.round(filtredAparts.length/limit)-1){
+                                    setApartments(filtredAparts.multiget(limit * (Math.round(filtredAparts.length/limit)-1) ,
+                                        Math.round(filtredAparts.length/limit) - (Math.round(filtredAparts.length/limit)-1) === 1 ?
+                                            filtredAparts.length
+                                            : (limit * (Math.round(filtredAparts.length/limit))-1) + limit))
+                                    setPage(Math.round(filtredAparts.length/limit)-1)
+                                }
+                            }}
+                        >
+                            {">>"}
                         </div>
                     </div>
                     <div
@@ -469,6 +516,20 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                             <label htmlFor="sight">достопримечательность</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="filter-wrapper">
+                                    <label htmlFor="build">Корпус</label>
+                                    <input
+                                        value={filterBuild}
+                                        name="build" type="text"
+                                        onChange={(e) => setFilterBuild(e.target.value)}
+                                    />
+                                    <label htmlFor="floor">Этаж</label>
+                                    <input
+                                        value={filterFloor}
+                                        name="floor" type="text"
+                                        onChange={(e) => setFilterFloor(e.target.value)}
+                                    />
                                 </div>
                                 {/*<div className="filter-wrapper">*/}
                                 {/*    <div className="filter-title">*/}

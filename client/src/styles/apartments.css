@@ -131,7 +131,7 @@
   margin-bottom: 5em;
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 240px;
 }
 .apartments-wrapper .content-outer .content-wrapper .pagination .prev-page, .apartments-wrapper .content-outer .content-wrapper .pagination .next-page {
   padding: 0.5em;
@@ -139,6 +139,14 @@
   border: 1px solid black;
   width: 35px;
   text-align: center;
+}
+.apartments-wrapper .content-outer .content-wrapper .pagination .first {
+  width: 40px;
+  margin-right: 5px;
+}
+.apartments-wrapper .content-outer .content-wrapper .pagination .last {
+  width: 40px;
+  margin-left: 5px;
 }
 .apartments-wrapper .content-outer .content-wrapper .pagination .page {
   padding: 0.5em;

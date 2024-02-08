@@ -104,7 +104,18 @@ const MainPage = observer(() => {
 
     // console.log(loadedApartments)
 
-    useEffect(() => {
+    const loadApp = () => {
+
+        setShowApartments(false)
+        setShowPantry(false)
+        setShowParking(false)
+        setShowCommercial(false)
+        setShowGallery(false)
+        setApartmentLoaded(false)
+        setPantryLoaded(false)
+        setParkingLoaded(false)
+        setCommercialLoaded(false)
+
         $host.get('/apartments/10').then(result => {
             $host.get('/apartments/' + result.data.count).then(result => {
                 console.log(result.data.results)
@@ -135,6 +146,10 @@ const MainPage = observer(() => {
                 setCommercialLoaded(true)
             })
         })
+    }
+
+    useEffect(() => {
+        loadApp()
     }, [])
 
     const hideApartments = () => {
@@ -416,8 +431,9 @@ const MainPage = observer(() => {
                     <div
                         className="logo"
                         style={showApartments || showPantry || showParking || showCommercial || showGallery ? {display: "none"} : {display: "flex"}}
+
                     >
-                        <Image src={levelLogo}/><span>Нижегородская</span>
+                        <Image onClick={() => loadApp()} src={levelLogo}/><span>Нижегородская</span>
                     </div>
                 </div>
             </div>

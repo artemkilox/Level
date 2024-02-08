@@ -163,7 +163,7 @@
         margin-bottom: 5em;
         display: flex;
         justify-content: space-between;
-        width: 200px;
+        width: 240px;
 
         .prev-page, .next-page{
           padding: .5em;
@@ -171,6 +171,14 @@
           border: 1px solid black;
           width: 35px;
           text-align: center;
+        }
+        .first{
+          width: 40px;
+          margin-right: 5px;
+        }
+        .last{
+          width: 40px;
+          margin-left: 5px;
         }
         .page{
           padding: .5em;
