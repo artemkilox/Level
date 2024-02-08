@@ -132,6 +132,17 @@ const Parking = ({showParking, hideParking, loadedParking}) => {
                     {parking.length === 0 ? <div>Таких парковочных мест нет</div> : <div></div>}
                     <div className="pagination">
                         <div
+                            className="prev-page first"
+                            onClick={() => {
+                                if(page > 0){
+                                    setParking(parkingFiltred.multiget(0 , limit))
+                                    setPage(0)
+                                }
+                            }}
+                        >
+                            {"<<"}
+                        </div>
+                        <div
                             className="prev-page"
                             onClick={() => {
                                 if(page > 0){
@@ -161,6 +172,20 @@ const Parking = ({showParking, hideParking, loadedParking}) => {
                             }}
                         >
                             {">"}
+                        </div>
+                        <div
+                            className="next-page last"
+                            onClick={() => {
+                                if(page < Math.round(parkingFiltred.length/limit)-1){
+                                    setParking(parkingFiltred.multiget(limit * (Math.round(parkingFiltred.length/limit)-1) ,
+                                        Math.round(parkingFiltred.length/limit) - (Math.round(parkingFiltred.length/limit)-1) === 1 ?
+                                            parkingFiltred.length
+                                            : (limit * (Math.round(parkingFiltred.length/limit))-1) + limit))
+                                    setPage(Math.round(parkingFiltred.length/limit)-1)
+                                }
+                            }}
+                        >
+                            {">>"}
                         </div>
                     </div>
                     <div

@@ -133,6 +133,17 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
                     {pantry.length === 0 ? <div>Таких парковочных мест нет</div> : <div></div>}
                     <div className="pagination">
                         <div
+                            className="prev-page first"
+                            onClick={() => {
+                                if(page > 0){
+                                    setPantry(pantryFiltred.multiget(0 , limit))
+                                    setPage(0)
+                                }
+                            }}
+                        >
+                            {"<<"}
+                        </div>
+                        <div
                             className="prev-page"
                             onClick={() => {
                                 if(page > 0){
@@ -162,6 +173,20 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
                             }}
                         >
                             {">"}
+                        </div>
+                        <div
+                            className="next-page last"
+                            onClick={() => {
+                                if(page < Math.round(pantryFiltred.length/limit)-1){
+                                    setPantry(pantryFiltred.multiget(limit * (Math.round(pantryFiltred.length/limit)-1) ,
+                                        Math.round(pantryFiltred.length/limit) - (Math.round(pantryFiltred.length/limit)-1) === 1 ?
+                                            pantryFiltred.length
+                                            : (limit * (Math.round(pantryFiltred.length/limit))-1) + limit))
+                                    setPage(Math.round(pantryFiltred.length/limit)-1)
+                                }
+                            }}
+                        >
+                            {">>"}
                         </div>
                     </div>
                     <div
