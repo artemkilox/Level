@@ -108,7 +108,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         const two = document.getElementById('two')
         const three = document.getElementById('three')
         const four = document.getElementById('four')
-        const five = document.getElementById('five')
+        // const five = document.getElementById('five')
 
         let roomsArr = []
         if(stud.checked){
@@ -126,11 +126,11 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         if(four.checked){
             roomsArr.push(4)
         }
-        if(five.checked){
-            roomsArr.push(5)
-        }
+        // if(five.checked){
+        //     roomsArr.push(5)
+        // }
         if(roomsArr.length === 0){
-            roomsArr = [0,1,2,3,4,5]
+            roomsArr = [0,1,2,3,4]
         }
 
         const yard = document.getElementById('yard')
@@ -526,12 +526,12 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                         <input id="four" className="checkbox" type="checkbox" style={{display: 'none'}}/>
                                         <span className="room-item">4</span>
                                     </label>
-                                    <label
-                                        htmlFor="five"
-                                    >
-                                        <input id="five" className="checkbox" type="checkbox" style={{display: 'none'}}/>
-                                        <span className="room-item">5</span>
-                                    </label>
+                                    {/*<label*/}
+                                    {/*    htmlFor="five"*/}
+                                    {/*>*/}
+                                    {/*    <input id="five" className="checkbox" type="checkbox" style={{display: 'none'}}/>*/}
+                                    {/*    <span className="room-item">5</span>*/}
+                                    {/*</label>*/}
                                 </div>
                             </div>
                             {/*<div className="filter-wrapper">*/}

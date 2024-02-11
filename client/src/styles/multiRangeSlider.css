@@ -10,7 +10,7 @@
 
 .slider {
     position: relative;
-    width: 380px;
+    width: 370px;
 }
 
 .slider__track,
@@ -40,31 +40,32 @@
 .slider__left-value,
 .slider__right-value {
     color: #000000;
-    font-size: 12px;
-    margin-top: 30px;
+    font-size: 15px;
+    margin-top: 45px;
     font-weight: bold;
 }
 
 .slider__left-value-upper{
     color: #000000;
-    font-size: 12px;
-    margin-top: -25px;
+    font-size: 15px;
+    margin-top: -40px;
     font-weight: bold;
-    margin-left: -50px;
+    /*margin-left: -50px;*/
     width: 10px;
+    transform: translateX(-5px);
 }
 
 .slider__right-value-upper{
     color: #000000;
-    font-size: 12px;
-    margin-top: -14px;
+    font-size: 15px;
+    margin-top: -18px;
     font-weight: bold;
-    margin-left: -50px;
     width: 10px;
+    transform: translateX(-8px);
 }
 
 .slider__left-value {
-    left: 6px;
+    left: -5px;
 }
 
 .slider__right-value {
@@ -105,8 +106,8 @@
     border-radius: 6px;
     /*box-shadow: 0 0 1px 1px #ced4da;*/
     cursor: pointer;
-    height: 18px;
-    width: 18px;
+    height: 30px;
+    width: 30px;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
@@ -119,8 +120,8 @@
     border-radius: 50%;
     box-shadow: 0 0 1px 1px #ced4da;
     cursor: pointer;
-    height: 18px;
-    width: 18px;
+    height: 30px;
+    width: 30px;
     margin-top: 4px;
     pointer-events: all;
     position: relative;
