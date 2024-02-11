@@ -57,6 +57,7 @@
   background: #243b4f;
 }
 .gallery-wrapper .gallery .gallery-inner .gallery-item {
+  overflow: hidden;
   height: 100vh;
   display: flex;
   justify-content: center;

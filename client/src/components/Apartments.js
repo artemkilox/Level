@@ -38,29 +38,62 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     const limit = 10
 
     ///////////// FILTERS //////////////////
-    const [minPrice, setMinPrice] = useState(13.7)
-    const [maxPrice, setMaxPrice] = useState(65.6)
+    const [minPrice, setMinPrice] = useState(0)
+    const [maxPrice, setMaxPrice] = useState(0)
     const [minArea, setMinArea] = useState(17)
     const [maxArea, setMaxArea] = useState(344)
-    const [rooms, setRooms] = useState([0,1,2,3,4,5])
-    const [windowsOn, setWindowsOn] = useState(['двор','город','парк','достопримечательности'])
+    // const [rooms, setRooms] = useState([0,1,2,3,4,5])
+    const [windowsOn, setWindowsOn] = useState([])
     ///
-    const [filterFloor, setFilterFloor] = useState('')
-    const [filterBuild, setFilterBuild] = useState('')
+    // const [filterFloor, setFilterFloor] = useState('')
+    // const [filterBuild, setFilterBuild] = useState('')
     // const [rareFormats, setRareFormats] = useState([])
 
     // console.log(filterFloor)
     // console.log(filterBuild)
 
+    // console.log(filtredAparts)
 
     useEffect(() => {
         if(showApartments){
             setApartments(loadedApartments.multiget(0 , limit))
             setApartBase(loadedApartments)
             setFiltredAparts(loadedApartments)
+            setMinMax(loadedApartments)
         }
     }, [showApartments])
 
+    const setMinMax = (aparts) => {
+        let minPrice = 9999999999999
+        let maxPrice = 0
+        let minArea = 99999999999999
+        let maxArea = 0
+
+        aparts.map(item => {
+            if(item.price < minPrice){
+                minPrice = item.price
+            }
+            if(item.price > maxPrice){
+                maxPrice = item.price
+            }
+            if(item.area < minArea){
+                minArea = item.area
+            }
+            if(item.area > maxArea){
+                maxArea = item.area
+            }
+            if(windowsOn.indexOf(item.windows_located) === -1){
+                windowsOn.push(item.windows_located)
+            }
+        })
+
+        console.log(windowsOn)
+
+        setMinPrice(Math.round((minPrice/1000000) * 10) / 10)
+        setMaxPrice(Math.round((maxPrice/1000000) * 10) / 10)
+        setMinArea(minArea)
+        setMaxArea(maxArea)
+    }
 
     const setFilters = () => {
         const stud = document.getElementById('stud')
@@ -97,6 +130,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         const park = document.getElementById('park')
         const city = document.getElementById('city')
         const sight = document.getElementById('sight')
+        const buildings = document.getElementById('buildings')
         let windowArr = []
 
         if (yard.checked){
@@ -111,9 +145,15 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         if (sight.checked){
             windowArr.push("достопримечательности")
         }
-        if(windowArr.length === 0){
-            windowArr = ['двор','город','парк','достопримечательности']
+        if (buildings.checked){
+            windowArr.push("окружающую застройку")
         }
+        if(windowArr.length === 0){
+            windowArr = windowsOn
+        }
+
+        // let str = 'двор, город'
+        // console.log("Входит ли - " +  str.indexOf('город'))
 
         const afterFilter = apartBase.filter((apart) =>
             apart.full_payment_price > minPrice * 1000000
@@ -121,9 +161,11 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             && apart.area > minArea
             && apart.area < maxArea
             && roomsArr.indexOf(apart.room) !== -1
-            && windowArr.indexOf(apart.windows_located) !== -1
-            && apart.building === filterBuild
-            && apart.floor === Number(filterFloor)
+            && apart.windows_located.indexOf(',') === -1 ?
+                windowArr.indexOf(apart.windows_located) !== -1 :
+                (windowArr.indexOf(apart.windows_located.split(', ')[0]) !== -1 || windowArr.indexOf(apart.windows_located.split(', ')[1]) !== -1)
+            // && apart.building === filterBuild
+            // && apart.floor === Number(filterFloor)
         )
 
         console.log(apartBase.filter((apart) =>
@@ -372,7 +414,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                         className="logo"
                         style={showOverlay ? {display: "flex"} : {display: "none"}}
                     >
-                        <Image src={levelLogoBlack}/><span>Нижегородская</span>
+                        <Image src={levelLogoBlack}/>
+                        {/*<span>Нижегородская</span>*/}
                     </div>
                     <div
                         className="back-btn-wrapper"
@@ -409,15 +452,17 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     Стоимость, <span>млн руб.</span>
                                 </div>
                                 <div className="filter-input">
-                                    <MultiRangeSlider
-                                        min={13.7}
-                                        max={65.6}
-                                        onChange={({ min, max }) => {
-                                            setMinPrice(min)
-                                            setMaxPrice(max)
-                                            // console.log(`min = ${min}, max = ${max}`)
-                                        }}
-                                    />
+                                    {maxPrice > 0 ?
+                                        <MultiRangeSlider
+                                            min={minPrice}
+                                            max={maxPrice}
+                                            onChange={({ min, max }) => {
+                                                setMinPrice(min)
+                                                setMaxPrice(max)
+                                                // console.log(`min = ${min}, max = ${max}`)
+                                            }}
+                                        /> : <div></div>
+                                    }
                                 </div>
                             </div>
                             <div className="filter-wrapper">
@@ -515,22 +560,26 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                             <input id="sight" className="checkbox" type="checkbox"/>
                                             <label htmlFor="sight">достопримечательность</label>
                                         </div>
+                                        <div className="check-wrapper">
+                                            <input id="buildings" className="checkbox" type="checkbox"/>
+                                            <label htmlFor="buildings">окружающую застройку</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="filter-wrapper">
-                                    <label htmlFor="build">Корпус</label>
-                                    <input
-                                        value={filterBuild}
-                                        name="build" type="text"
-                                        onChange={(e) => setFilterBuild(e.target.value)}
-                                    />
-                                    <label htmlFor="floor">Этаж</label>
-                                    <input
-                                        value={filterFloor}
-                                        name="floor" type="text"
-                                        onChange={(e) => setFilterFloor(e.target.value)}
-                                    />
-                                </div>
+                                {/*<div className="filter-wrapper">*/}
+                                {/*    <label htmlFor="build">Корпус</label>*/}
+                                {/*    <input*/}
+                                {/*        value={filterBuild}*/}
+                                {/*        name="build" type="text"*/}
+                                {/*        onChange={(e) => setFilterBuild(e.target.value)}*/}
+                                {/*    />*/}
+                                {/*    <label htmlFor="floor">Этаж</label>*/}
+                                {/*    <input*/}
+                                {/*        value={filterFloor}*/}
+                                {/*        name="floor" type="text"*/}
+                                {/*        onChange={(e) => setFilterFloor(e.target.value)}*/}
+                                {/*    />*/}
+                                {/*</div>*/}
                                 {/*<div className="filter-wrapper">*/}
                                 {/*    <div className="filter-title">*/}
                                 {/*        Редкие форматы*/}
@@ -595,51 +644,3 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
 };
 
 export default Apartments;
-
-
-// const getApartments = async (change) => {
-//     if(change === 'none'){
-//         await $host.get('/apartments/' + page).then(result => {
-//             console.log(result)
-//             setApartQuantity(result.data.count)
-//             setApartments(result.data.results)
-//             console.log(apartments)
-//         })
-//     } else if(change === 'next'){
-//         if(page === Math.round(apartQuantity/limit)){
-//             await $host.get('/apartments/' + page).then(result => {
-//                 console.log(result)
-//                 setApartQuantity(result.data.count)
-//                 setApartments(result.data.results)
-//                 console.log(apartments)
-//             })
-//         } else {
-//             const newPage = page + 1
-//             await $host.get('/apartments/' + newPage).then(result => {
-//                 console.log(result)
-//                 setApartQuantity(result.data.count)
-//                 setApartments(result.data.results)
-//                 console.log(apartments)
-//             })
-//             setPage(page + 1)
-//         }
-//     } else if (change === 'prev'){
-//         if(page === 0){
-//             await $host.get('/apartments/' + page).then(result => {
-//                 console.log(result)
-//                 setApartQuantity(result.data.count)
-//                 setApartments(result.data.results)
-//                 console.log(apartments)
-//             })
-//         } else{
-//             const newPage = page - 1
-//             await $host.get('/apartments/' + newPage).then(result => {
-//                 console.log(result)
-//                 setApartQuantity(result.data.count)
-//                 setApartments(result.data.results)
-//                 console.log(apartments)
-//             })
-//             setPage(page - 1)
-//         }
-//     }
-// }

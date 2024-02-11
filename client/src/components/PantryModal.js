@@ -3,6 +3,7 @@ import {Button, Image} from "react-bootstrap";
 import heartImage from "../img/heart.svg";
 import imgIcon from "../img/imgIcon.svg";
 import carIcon from "../img/carIcon.svg";
+import {useEffect} from "react";
 
 //////////////////////////////////////////
 // import apartment1 from "../img/apartments/apartment.jpg";
@@ -15,6 +16,11 @@ import carIcon from "../img/carIcon.svg";
 
 const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
     const [currentImage, setCurrentImage] = useState(0)
+
+    useEffect( () => {
+        if(show === true)
+            setCurrentImage(0)
+    }, [show])
 
     // const newRoom = {id: 1, img: [apartment1, apartment1, apartment1],
     //     article: 'K1-H8', title: "Аренда", characters: [{title: 'Площадь', value: "30 м²"},

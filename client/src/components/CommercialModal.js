@@ -2,9 +2,15 @@ import React, {useState} from 'react';
 import {Button, Image} from "react-bootstrap";
 import heartImage from "../img/heart.svg";
 import imgIcon from "../img/imgIcon.svg";
+import {useEffect} from "react";
 
 const Modal = ({show, onHide, room, openGallery, setGalleryImages}) => {
     const [currentImage, setCurrentImage] = useState(0)
+
+    useEffect( () => {
+        if(show === true)
+            setCurrentImage(0)
+    }, [show])
 
     const setCurrent = (number) => {
         document.getElementById('btn-0').classList.remove('active')

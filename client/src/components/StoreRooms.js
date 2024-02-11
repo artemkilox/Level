@@ -193,7 +193,8 @@ const StoreRooms = ({showPantry, hidePantry, loadedPantry}) => {
                         className="logo"
                         style={showOverlay ? {display: "flex"} : {display: "none"}}
                     >
-                        <Image src={levelLogoBlack}/><span>Нижегородская</span>
+                        <Image src={levelLogoBlack}/>
+                        {/*<span>Нижегородская</span>*/}
                     </div>
                     <div
                         className="back-btn-wrapper"

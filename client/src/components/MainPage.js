@@ -433,7 +433,8 @@ const MainPage = observer(() => {
                         style={showApartments || showPantry || showParking || showCommercial || showGallery ? {display: "none"} : {display: "flex"}}
 
                     >
-                        <Image onClick={() => loadApp()} src={levelLogo}/><span>Нижегородская</span>
+                        <Image onClick={() => loadApp()} src={levelLogo}/>
+                        <span>Нижегородская</span>
                     </div>
                 </div>
             </div>

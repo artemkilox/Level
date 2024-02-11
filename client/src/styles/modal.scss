@@ -21,13 +21,16 @@
   z-index: 998;
 
   .close-button{
+    //background: red;
     top: 4em;
     left: 2em;
     position: fixed;
-    height: 50px;
-    width: 50px;
+    height: 80px;
+    width: 80px;
 
     &:after {
+      margin-top: 35px;
+      margin-left: 20px;
       content: '';
       position: fixed;
       height: 3px;
@@ -36,6 +39,8 @@
       transform: rotate(-45deg);
     }
     &:before {
+      margin-top: 35px;
+      margin-left: 20px;
       content: '';
       position: fixed;
       height: 3px;
