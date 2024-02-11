@@ -44,6 +44,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     const [maxArea, setMaxArea] = useState(344)
     // const [rooms, setRooms] = useState([0,1,2,3,4,5])
     const [windowsOn, setWindowsOn] = useState([])
+
+    const [maxPriceFilter, setMaxPriceFilter] = useState(0)
+    const [minPriceFilter, setMinPriceFilter] = useState(0)
     ///
     // const [filterFloor, setFilterFloor] = useState('')
     // const [filterBuild, setFilterBuild] = useState('')
@@ -87,10 +90,10 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             }
         })
 
-        console.log(windowsOn)
+        // console.log(windowsOn)
 
-        setMinPrice(Math.round((minPrice/1000000) * 10) / 10)
-        setMaxPrice(Math.round((maxPrice/1000000) * 10) / 10)
+        setMaxPriceFilter(Math.round((maxPrice/1000000) * 10) / 10)
+        setMinPriceFilter(Math.round((minPrice/1000000) * 10) / 10)
         setMinArea(minArea)
         setMaxArea(maxArea)
     }
@@ -161,9 +164,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             && apart.area > minArea
             && apart.area < maxArea
             && roomsArr.indexOf(apart.room) !== -1
-            && apart.windows_located.indexOf(',') === -1 ?
+            && (apart.windows_located.indexOf(',') === -1 ?
                 windowArr.indexOf(apart.windows_located) !== -1 :
-                (windowArr.indexOf(apart.windows_located.split(', ')[0]) !== -1 || windowArr.indexOf(apart.windows_located.split(', ')[1]) !== -1)
+                (windowArr.indexOf(apart.windows_located.split(', ')[0]) !== -1 || windowArr.indexOf(apart.windows_located.split(', ')[1]) !== -1))
             // && apart.building === filterBuild
             // && apart.floor === Number(filterFloor)
         )
@@ -195,9 +198,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         setSelectedRoom('')
     }
 
-    console.log(page)
+    // console.log(page)
     // console.log(filtredAparts)
-    console.log(Math.round(filtredAparts.length/limit))
+    // console.log(Math.round(filtredAparts.length/limit))
 
     return (
         <div
@@ -452,10 +455,10 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     Стоимость, <span>млн руб.</span>
                                 </div>
                                 <div className="filter-input">
-                                    {maxPrice > 0 ?
+                                    {maxPriceFilter > 0 ?
                                         <MultiRangeSlider
-                                            min={minPrice}
-                                            max={maxPrice}
+                                            min={minPriceFilter}
+                                            max={maxPriceFilter}
                                             onChange={({ min, max }) => {
                                                 setMinPrice(min)
                                                 setMaxPrice(max)
