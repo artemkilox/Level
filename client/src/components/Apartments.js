@@ -40,13 +40,15 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     ///////////// FILTERS //////////////////
     const [minPrice, setMinPrice] = useState(0)
     const [maxPrice, setMaxPrice] = useState(0)
-    const [minArea, setMinArea] = useState(17)
-    const [maxArea, setMaxArea] = useState(344)
+    const [minArea, setMinArea] = useState(0)
+    const [maxArea, setMaxArea] = useState(0)
     // const [rooms, setRooms] = useState([0,1,2,3,4,5])
     const [windowsOn, setWindowsOn] = useState([])
 
     const [maxPriceFilter, setMaxPriceFilter] = useState(0)
     const [minPriceFilter, setMinPriceFilter] = useState(0)
+    const [maxAreaFilter, setMaxAreaFilter] = useState(0)
+    const [minAreaFilter, setMinAreaFilter] = useState(0)
     ///
     // const [filterFloor, setFilterFloor] = useState('')
     // const [filterBuild, setFilterBuild] = useState('')
@@ -94,8 +96,10 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
 
         setMaxPriceFilter(Math.round((maxPrice/1000000) * 10) / 10)
         setMinPriceFilter(Math.round((minPrice/1000000) * 10) / 10)
-        setMinArea(minArea)
-        setMaxArea(maxArea)
+        setMaxAreaFilter(maxArea)
+        setMinAreaFilter(minArea)
+        // setMinArea(minArea)
+        // setMaxArea(maxArea)
     }
 
     const setFilters = () => {
@@ -473,15 +477,18 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     Площадь квартиры, <span> м²</span>
                                 </div>
                                 <div className="filter-input">
-                                    <MultiRangeSlider
-                                        min={17}
-                                        max={344}
-                                        onChange={({ min, max }) => {
-                                            setMinArea(min)
-                                            setMaxArea(max)
-                                            // console.log(`min = ${min}, max = ${max}`)
-                                        }}
-                                    />
+                                    {maxAreaFilter > 0 ?
+                                        <MultiRangeSlider
+                                            min={minAreaFilter}
+                                            max={maxAreaFilter}
+                                            onChange={({ min, max }) => {
+                                                setMinArea(min)
+                                                setMaxArea(max)
+                                                // console.log(`min = ${min}, max = ${max}`)
+                                            }}
+                                        />
+                                        : <div></div>}
+
                                 </div>
                             </div>
                             <div className="filter-wrapper">
