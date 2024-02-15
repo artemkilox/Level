@@ -42,13 +42,18 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     const [maxPrice, setMaxPrice] = useState(0)
     const [minArea, setMinArea] = useState(0)
     const [maxArea, setMaxArea] = useState(0)
+    const [minFloor, setMinFloor] = useState(0)
+    const [maxFloor, setMaxFloor] = useState(0)
     // const [rooms, setRooms] = useState([0,1,2,3,4,5])
     const [windowsOn, setWindowsOn] = useState([])
+    const [buildings, setBuildings] = useState([])
 
     const [maxPriceFilter, setMaxPriceFilter] = useState(0)
     const [minPriceFilter, setMinPriceFilter] = useState(0)
     const [maxAreaFilter, setMaxAreaFilter] = useState(0)
     const [minAreaFilter, setMinAreaFilter] = useState(0)
+    const [maxFloorFilter, setMaxFloorFilter] = useState(0)
+    const [minFloorFilter, setMinFloorFilter] = useState(0)
     ///
     // const [filterFloor, setFilterFloor] = useState('')
     // const [filterBuild, setFilterBuild] = useState('')
@@ -61,6 +66,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
 
     useEffect(() => {
         if(showApartments){
+            loadedApartments.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
             setApartments(loadedApartments.multiget(0 , limit))
             setApartBase(loadedApartments)
             setFiltredAparts(loadedApartments)
@@ -73,6 +79,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         let maxPrice = 0
         let minArea = 99999999999999
         let maxArea = 0
+        let minFloor = 99999999999999
+        let maxFloor = 0
 
         aparts.map(item => {
             if(item.price < minPrice){
@@ -87,17 +95,28 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             if(item.area > maxArea){
                 maxArea = item.area
             }
+            if(item.floor < minFloor){
+                minFloor = item.floor
+            }
+            if(item.floor > maxFloor){
+                maxFloor = item.floor
+            }
             if(windowsOn.indexOf(item.windows_located) === -1){
                 windowsOn.push(item.windows_located)
             }
+            if(buildings.indexOf(item.building) === -1){
+                buildings.push(item.building)
+            }
         })
 
-        // console.log(windowsOn)
+        // console.log(buildings)
 
         setMaxPriceFilter(Math.round((maxPrice/1000000) * 10) / 10)
         setMinPriceFilter(Math.round((minPrice/1000000) * 10) / 10)
         setMaxAreaFilter(maxArea)
         setMinAreaFilter(minArea)
+        setMaxFloorFilter(maxFloor)
+        setMinFloorFilter(minFloor)
         // setMinArea(minArea)
         // setMaxArea(maxArea)
     }
@@ -133,6 +152,32 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             roomsArr = [0,1,2,3,4]
         }
 
+        const build1 = document.getElementById('build1')
+        const build2 = document.getElementById('build2')
+        const build3 = document.getElementById('build3')
+        const build4 = document.getElementById('build4')
+        const build5 = document.getElementById('build5')
+
+        let buildsArr = []
+        if(build1.checked){
+            buildsArr.push("1")
+        }
+        if(build2.checked){
+            buildsArr.push("2")
+        }
+        if(build3.checked){
+            buildsArr.push("3")
+        }
+        if(build4.checked){
+            buildsArr.push("4")
+        }
+        if(build5.checked){
+            buildsArr.push("5")
+        }
+        if(buildsArr.length === 0){
+            buildsArr = ["1","2","3","4","5"]
+        }
+
         const yard = document.getElementById('yard')
         const park = document.getElementById('park')
         const city = document.getElementById('city')
@@ -140,19 +185,19 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         const buildings = document.getElementById('buildings')
         let windowArr = []
 
-        if (yard.checked){
+        if(yard.checked){
             windowArr.push("двор")
         }
-        if (park.checked){
+        if(park.checked){
             windowArr.push("парк")
         }
-        if (city.checked){
+        if(city.checked){
             windowArr.push("город")
         }
-        if (sight.checked){
+        if(sight.checked){
             windowArr.push("достопримечательности")
         }
-        if (buildings.checked){
+        if(buildings.checked){
             windowArr.push("окружающую застройку")
         }
         if(windowArr.length === 0){
@@ -162,23 +207,28 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         // let str = 'двор, город'
         // console.log("Входит ли - " +  str.indexOf('город'))
 
+        // console.log(minArea)
+        // console.log(maxArea)
+
         const afterFilter = apartBase.filter((apart) =>
             apart.full_payment_price > minPrice * 1000000
             && apart.full_payment_price < maxPrice * 1000000
-            && apart.area > minArea
-            && apart.area < maxArea
+            && apart.area >= minArea
+            && apart.area <= maxArea
             && roomsArr.indexOf(apart.room) !== -1
             && (apart.windows_located.indexOf(',') === -1 ?
                 windowArr.indexOf(apart.windows_located) !== -1 :
                 (windowArr.indexOf(apart.windows_located.split(', ')[0]) !== -1 || windowArr.indexOf(apart.windows_located.split(', ')[1]) !== -1))
-            // && apart.building === filterBuild
-            // && apart.floor === Number(filterFloor)
+            && buildsArr.indexOf(apart.building) !== -1
+            && apart.floor > minFloor
+            && apart.floor < maxFloor
         )
 
-        console.log(apartBase.filter((apart) =>
-            apart.building === "3"
-            && apart.floor === 2
-        ))
+        // console.log(afterFilter)
+        // console.log(apartBase.filter((apart) =>
+        //     apart.building === "3"
+        //     && apart.floor === 2
+        // ))
 
         let rooms = []
 
@@ -533,6 +583,58 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     {/*    <span className="room-item">5</span>*/}
                                     {/*</label>*/}
                                 </div>
+                            </div>
+                            <div className="filter-wrapper">
+                                <div className="filter-title">
+                                    Корпус
+                                </div>
+                                <div className="rooms">
+                                    <label
+                                        htmlFor="build1"
+                                    >
+                                        <input id="build1" className="checkbox" type="checkbox" style={{display: 'none'}}/>
+                                        <span className="room-item">1</span>
+                                    </label>
+                                    <label
+                                        htmlFor="build2"
+                                    >
+                                        <input id="build2" className="checkbox" type="checkbox" style={{display: 'none'}}/>
+                                        <span className="room-item">2</span>
+                                    </label>
+                                    <label
+                                        htmlFor="build3"
+                                    >
+                                        <input id="build3" className="checkbox" type="checkbox" style={{display: 'none'}}/>
+                                        <span className="room-item">3</span>
+                                    </label>
+                                    <label
+                                        htmlFor="build4"
+                                    >
+                                        <input id="build4" className="checkbox" type="checkbox" style={{display: 'none'}}/>
+                                        <span className="room-item">4</span>
+                                    </label>
+                                    <label
+                                        htmlFor="build5"
+                                    >
+                                        <input id="build5" className="checkbox" type="checkbox" style={{display: 'none'}}/>
+                                        <span className="room-item">5</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="filter-wrapper">
+                                <div className="filter-title">
+                                    Этаж
+                                </div>
+                                {maxFloorFilter > 0 ?
+                                    <MultiRangeSlider
+                                        min={minFloorFilter}
+                                        max={maxFloorFilter}
+                                        onChange={({ min, max }) => {
+                                            setMinFloor(min)
+                                            setMaxFloor(max)
+                                            // console.log(`min = ${min}, max = ${max}`)
+                                        }}
+                                    /> : <div></div>}
                             </div>
                             {/*<div className="filter-wrapper">*/}
                             {/*    <div className="filter-title">*/}
