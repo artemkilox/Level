@@ -280,7 +280,7 @@
         .filters-outer{
 
           .filter-wrapper{
-            margin-bottom: 2em;
+            margin-bottom: 1em;
             .filter-title{
               font-weight: bold;
 
@@ -296,7 +296,7 @@
               display: flex;
               justify-content: space-between;
               width: 350px;
-              margin: 2em auto 0;
+              margin: 1em auto 0;
 
               .room-item{
                 display: block;
@@ -319,7 +319,7 @@
             justify-content: space-between;
 
             .checkbox-filters{
-              margin-top: 1em;
+              margin-top: 0.5em;
               display: flex;
               flex-direction: column;
 
@@ -430,7 +430,7 @@
       }
     }
     .open-sidebar{
-      padding: 2em;
+      padding: 1em 2em;
       width: 30em;
     }
   }
