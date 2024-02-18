@@ -3,7 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import "../styles/multiRangeSlider.css";
 
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider = ({ min, max, onChange, reset, setReset}) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(null);
@@ -12,6 +12,14 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
     const sliderWidth = 380
     const startPosition = -15
+
+    useEffect(() => {
+        if(reset === true){
+            setMinVal(min)
+            setMaxVal(max)
+            setReset(false)
+        }
+    }, [reset])
 
     // Convert to percentage
     const getPercent = useCallback(

@@ -58,6 +58,9 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
     // const [filterFloor, setFilterFloor] = useState('')
     // const [filterBuild, setFilterBuild] = useState('')
     // const [rareFormats, setRareFormats] = useState([])
+    const [floorReset, setFloorReset] = useState(false)
+    const [priceReset, setPriceReset] = useState(false)
+    const [areaReset, setAreaReset] = useState(false)
 
     // console.log(filterFloor)
     // console.log(filterBuild)
@@ -240,6 +243,40 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         setFiltredAparts(afterFilter)
         const quan = afterFilter.length > limit ? limit : afterFilter.length
         setApartments(afterFilter.multiget(0 , quan))
+    }
+
+    const resetValues = () => {
+        document.getElementById('stud').checked         === true ? document.getElementById('stud').checked      = false : document.getElementById('stud')
+        document.getElementById('one').checked          === true ? document.getElementById('one').checked       = false : document.getElementById('one')
+        document.getElementById('two').checked          === true ? document.getElementById('two').checked       = false : document.getElementById('two')
+        document.getElementById('three').checked        === true ? document.getElementById('three').checked     = false : document.getElementById('three')
+        document.getElementById('four').checked         === true ? document.getElementById('four').checked      = false : document.getElementById('four')
+        document.getElementById('build1').checked       === true ? document.getElementById('build1').checked    = false : document.getElementById('build1')
+        document.getElementById('build2').checked       === true ? document.getElementById('build2').checked    = false : document.getElementById('build2')
+        document.getElementById('build3').checked       === true ? document.getElementById('build3').checked    = false : document.getElementById('build3')
+        document.getElementById('build4').checked       === true ? document.getElementById('build4').checked    = false : document.getElementById('build4')
+        document.getElementById('build5').checked       === true ? document.getElementById('build5').checked    = false : document.getElementById('build5')
+        document.getElementById('yard').checked         === true ? document.getElementById('yard').checked      = false : document.getElementById('yard')
+        document.getElementById('park').checked         === true ? document.getElementById('park').checked      = false : document.getElementById('park')
+        document.getElementById('city').checked         === true ? document.getElementById('city').checked      = false : document.getElementById('city')
+        document.getElementById('sight').checked        === true ? document.getElementById('sight').checked     = false : document.getElementById('sight')
+        document.getElementById('buildings').checked    === true ? document.getElementById('buildings').checked = false : document.getElementById('buildings')
+        setFloorReset(true)
+        setPriceReset(true)
+        setAreaReset(true)
+    }
+
+    const resetFilters = () => {
+        resetValues()
+        setPage(0)
+        setFiltredAparts(apartBase)
+        setApartments(apartBase.multiget(0 , limit))
+        setShowSidebar(false)
+        let rooms = []
+        apartBase.map(item => {
+            rooms.push({type: "apart", building: item.building, number: item.number})
+        })
+        $host.post('/', {rooms})
     }
 
     const onHide = () => {
@@ -513,6 +550,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                         <MultiRangeSlider
                                             min={minPriceFilter}
                                             max={maxPriceFilter}
+                                            reset={priceReset}
+                                            setReset={setPriceReset}
                                             onChange={({ min, max }) => {
                                                 setMinPrice(min)
                                                 setMaxPrice(max)
@@ -531,6 +570,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                         <MultiRangeSlider
                                             min={minAreaFilter}
                                             max={maxAreaFilter}
+                                            reset={areaReset}
+                                            setReset={setAreaReset}
                                             onChange={({ min, max }) => {
                                                 setMinArea(min)
                                                 setMaxArea(max)
@@ -629,6 +670,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                                     <MultiRangeSlider
                                         min={minFloorFilter}
                                         max={maxFloorFilter}
+                                        reset={floorReset}
+                                        setReset={setFloorReset}
                                         onChange={({ min, max }) => {
                                             setMinFloor(min)
                                             setMaxFloor(max)
@@ -723,17 +766,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
                         <div className="buttons-wrapper">
                             <Button
                                 className="filter-button"
-                                onClick={() => {
-                                    setPage(0)
-                                    setFiltredAparts(apartBase)
-                                    setApartments(apartBase.multiget(0 , limit))
-                                    setShowSidebar(false)
-                                    let rooms = []
-                                    apartBase.map(item => {
-                                        rooms.push({type: "apart", building: item.building, number: item.number})
-                                    })
-                                    $host.post('/', {rooms})
-                                }}
+                                onClick={resetFilters}
                             >
                                 Сбросить фильтр
                             </Button>
