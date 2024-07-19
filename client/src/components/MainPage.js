@@ -148,6 +148,15 @@ const MainPage = observer(() => {
         })
     }
 
+    console.log("Начало")
+
+    setTimeout(() => {
+        console.log("setTim")
+    }, 0)
+
+    console.log("конец")
+
+
     useEffect(() => {
         loadApp()
     }, [])

@@ -85,6 +85,8 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
         let minFloor = 99999999999999
         let maxFloor = 0
 
+        let roomsArr = []
+
         aparts.map(item => {
             if(item.price < minPrice){
                 minPrice = item.price
@@ -110,9 +112,12 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             if(buildings.indexOf(item.building) === -1){
                 buildings.push(item.building)
             }
+            // if(roomsArr.indexOf(item.room) === -1){
+            //     roomsArr.push(item.room)
+            // }
         })
 
-        // console.log(buildings)
+        // console.log(roomsArr)
 
         setMaxPriceFilter(Math.round((maxPrice/1000000) * 10) / 10)
         setMinPriceFilter(Math.round((minPrice/1000000) * 10) / 10)
@@ -227,7 +232,7 @@ const Apartments = ({showApartments, hideApartments, loadedApartments}) => {
             && apart.floor < maxFloor
         )
 
-        // console.log(afterFilter)
+        console.log(afterFilter)
         // console.log(apartBase.filter((apart) =>
         //     apart.building === "3"
         //     && apart.floor === 2
